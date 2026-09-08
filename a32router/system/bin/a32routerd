@@ -1,0 +1,317 @@
+#!/system/bin/sh
+# a32routerd — monitor daemon for a32router Magisk module.
+# Ensures: RNDIS gadget function + USB address + main-table route +
+# ip_forward + isolated iptables chain, all idempotent. Static-first (no DHCP
+# unless USB_DHCP=1). Never NATs PC traffic. BT export is phase 2 (stub).
+MODDIR=${0%/*}
+CONF="$MODDIR/a32router.conf"
+[ -f "$CONF" ] && . "$CONF"
+
+USB_SUBNET=${USB_SUBNET:-192.168.50.0/24}
+USB_IP=${USB_IP:-192.168.50.1}
+USB_PREFIX=${USB_PREFIX:-24}
+USB_MAC=${USB_MAC:-02:A3:32:50:00:01}
+TICK=${TICK:-5}
+G=/config/usb_gadget/g1
+# PROVEN (2026-09-07): only init may compose the configfs gadget on this ROM
+# (direct mkdir/ln/UDC writes hit an EPERM kernel guard and flap host USB).
+# We drive the sanctioned property transition none -> rndis,adb and let
+# init.usb.configfs.rc create f1->rndis.gs4 + f2->ffs.adb and bind the UDC.
+WANT_CFG="rndis,adb"
+RFUNC="$G/functions/rndis.gs4"
+RLINK="$G/configs/b.1/f1"
+STATE_DIR="$MODDIR/state"
+mkdir -p "$STATE_DIR" 2>/dev/null
+# Pidfile so service/uninstall/remote shells can stop us without pkill -f
+# (whose pattern can match the caller's own command line and kill it).
+echo $$ > "$STATE_DIR/a32routerd.pid" 2>/dev/null
+
+log() { echo "$(date '+%m-%d %H:%M:%S') a32routerd: $1"; }
+
+# --- Wi-Fi upstream detection (dynamic interface name) -----------------------
+wifi_iface() {
+  # Prefer the interface behind the default route of a per-net table.
+  ip route show table all 2>/dev/null | grep -m1 '^default via .* dev wlan' | sed 's/.* dev \([a-zA-Z0-9._-]*\).*/\1/'
+}
+wifi_ready() {
+  WIFACE=$(wifi_iface)
+  [ -z "$WIFACE" ] && WIFACE="wlan0"
+  ip addr show "$WIFACE" 2>/dev/null | grep -q 'inet .* scope global' || return 1
+  ip route show table "$WIFACE" 2>/dev/null | grep -q '^default via ' || return 1
+  echo "$WIFACE"
+}
+
+# --- USB gadget via init-driven composition (setprop path) --------------------
+gadget_ok() {
+  [ "$(getprop sys.usb.config 2>/dev/null)" = "$WANT_CFG" ] || return 1
+  [ "$(getprop sys.usb.state 2>/dev/null)" = "$WANT_CFG" ] || return 1
+  case "$(readlink "$RLINK" 2>/dev/null)" in *rndis.gs4) ;; *) return 1;; esac
+  [ -d "$RFUNC" ] || return 1
+  return 0
+}
+wait_prop() { # $1=prop $2=value $3=timeout_s
+  i=0
+  while [ "$(getprop "$1" 2>/dev/null)" != "$2" ]; do
+    sleep 1; i=$((i+1)); [ "$i" -ge "$3" ] && return 1
+  done
+  return 0
+}
+gadget_ensure() {
+  gadget_ok && return 0
+  cur=$(getprop sys.usb.config 2>/dev/null)
+  log "gadget: switching usb config '$cur' -> '$WANT_CFG' via init (host USB briefly resets)"
+  setprop sys.usb.config none 2>/dev/null
+  if ! wait_prop sys.usb.state none 15; then
+    log "ERR usb state never reached none"; return 1
+  fi
+  sleep 1
+  setprop sys.usb.config "$WANT_CFG" 2>/dev/null
+  if ! wait_prop sys.usb.state "$WANT_CFG" 20; then
+    log "ERR usb state never reached $WANT_CFG"; return 1
+  fi
+  # Keep the composition across reboot/replug: framework restores persist value.
+  [ "$(getprop persist.sys.usb.config 2>/dev/null)" != "$WANT_CFG" ] && \
+    setprop persist.sys.usb.config "$WANT_CFG" 2>/dev/null
+  sleep 2
+  gadget_ok || { log "ERR composition incomplete after switch"; return 1; }
+  log "gadget: $WANT_CFG composed (f1->rndis.gs4)"
+  return 0
+}
+
+# Find the USB network interface for OUR rndis function (name varies).
+# Prefers the kernel ifname attr; falls back to matching dev_addr MAC.
+usb_iface() {
+  ifname=$(cat "$RFUNC/ifname" 2>/dev/null)
+  case "$ifname" in ""|"(unnamed net_device)") ;;
+    *) ip link show "$ifname" >/dev/null 2>&1 && { echo "$ifname"; return 0; } ;;
+  esac
+  want=$(cat "$RFUNC/dev_addr" 2>/dev/null | tr 'A-Z' 'a-z')
+  [ -n "$want" ] || return 1
+  for f in /sys/class/net/*/address; do
+    [ "$(cat "$f" 2>/dev/null | tr 'A-Z' 'a-z')" = "$want" ] && { basename "$(dirname "$f")"; return 0; }
+  done
+  return 1
+}
+
+# --- Subnet overlap guard -----------------------------------------------------
+wifi_net() {
+  ip addr show "$1" 2>/dev/null | grep -m1 -o 'inet [0-9./]*' | awk '{print $2}'
+}
+overlap() {
+  # $1 = wifi cidr, $2 = usb network base. Crude /24-vs-/24 check is enough
+  # for the default config; refuse on first-three-octet match.
+  wbase=$(echo "$1" | cut -d. -f1-3); ubase=$(echo "$2" | cut -d. -f1-3)
+  [ "$wbase" = "$ubase" ]
+}
+
+# --- Network + forwarding + firewall (idempotent) -----------------------------
+net_ensure() {
+  UIF=$1; WIF=$2
+  ip link set "$UIF" up 2>/dev/null
+  ip addr show "$UIF" 2>/dev/null | grep -q "$USB_IP/$USB_PREFIX" || \
+    ip addr add "$USB_IP/$USB_PREFIX" dev "$UIF" 2>/dev/null || { log "ERR addr add"; return 1; }
+  ip route show table main 2>/dev/null | grep -q "$USB_SUBNET.*dev $UIF" || \
+    ip route add "$USB_SUBNET" dev "$UIF" table main 2>/dev/null || { log "ERR route add"; return 1; }
+  [ "$(cat /proc/sys/net/ipv4/ip_forward 2>/dev/null)" = "1" ] || \
+    echo 1 > /proc/sys/net/ipv4/ip_forward 2>/dev/null
+  iptables -N a32fwd 2>/dev/null
+  iptables -C FORWARD -j a32fwd 2>/dev/null || iptables -I FORWARD -j a32fwd 2>/dev/null
+  iptables -C a32fwd -i "$UIF" -o "$WIF" -s "$USB_SUBNET" -j ACCEPT 2>/dev/null || \
+    iptables -A a32fwd -i "$UIF" -o "$WIF" -s "$USB_SUBNET" -j ACCEPT 2>/dev/null
+  iptables -C a32fwd -i "$WIF" -o "$UIF" -d "$USB_SUBNET" -j ACCEPT 2>/dev/null || \
+    iptables -A a32fwd -i "$WIF" -o "$UIF" -d "$USB_SUBNET" -j ACCEPT 2>/dev/null
+  # DHCP reachability (tested 2026-09-07): the USB DHCP client never ARPs for
+  # its not-yet-owned address, so OFFERs die in the neighbor queue. Pin the
+  # first-pool address to the gadget's live host MAC; refreshed every tick so
+  # a recomposition (new MACs) self-heals.
+  HOSTMAC=$(cat "$RFUNC/host_addr" 2>/dev/null | tr 'A-Z' 'a-z')
+  case "$HOSTMAC" in ""|*" "*) log "WARN cannot read host_addr";;
+    *) ip neigh replace 192.168.50.2 lladdr "$HOSTMAC" dev "$UIF" nud permanent 2>/dev/null || \
+         log "WARN neigh pin failed";;
+  esac
+  # Explicitly ensure no MASQUERADE/SNAT covers our subnet (stock tethering NAT
+  # must never apply to PC traffic).
+  if iptables -t nat -S 2>/dev/null | grep -q "$USB_SUBNET"; then
+    log "WARN nat table references $USB_SUBNET (must be investigated)"
+  fi
+  route_ensure "$UIF" "$WIF" || return 1
+  route6_ensure "$UIF" "$WIF" || log "WARN v6 ensure failed (v4 unaffected)"
+  return 0
+}
+
+# --- Policy routing (this ROM bypasses main via rule 32000) -------------------
+# Rule 32000 "from all unreachable" fires before main (32766), and per-net
+# catch rules shunt unmarked traffic into the wlan0 table, so a main-table
+# route alone can neither send replies to the PC nor forward PC traffic.
+# We use our own table (100) + two high-priority rules, all idempotent.
+RTABLE=100
+RTPRI_FROM=5000
+RTPRI_TO=5001
+route_ensure() {
+  UIF=$1; WIF=$2
+  GW=$(ip route show table "$WIF" 2>/dev/null | grep -m1 '^default via ' | sed 's/.*via \([0-9.]*\).*/\1/')
+  ip route show table "$RTABLE" 2>/dev/null | grep -q "$USB_SUBNET.*dev $UIF" || \
+    ip route add "$USB_SUBNET" dev "$UIF" table "$RTABLE" 2>/dev/null || { log "ERR rt table connected"; return 1; }
+  if [ -n "$GW" ]; then
+    ip route show table "$RTABLE" 2>/dev/null | grep -q "^default via $GW" || \
+      ip route replace default via "$GW" dev "$WIF" table "$RTABLE" 2>/dev/null || { log "ERR rt table default"; return 1; }
+  fi
+  ip rule show 2>/dev/null | grep -q "from $USB_SUBNET.*lookup $RTABLE" || \
+    ip rule add from "$USB_SUBNET" table "$RTABLE" priority "$RTPRI_FROM" 2>/dev/null || { log "ERR rule from"; return 1; }
+  ip rule show 2>/dev/null | grep -q "to $USB_SUBNET.*lookup $RTABLE" || \
+    ip rule add to "$USB_SUBNET" table "$RTABLE" priority "$RTPRI_TO" 2>/dev/null || { log "ERR rule to"; return 1; }
+  return 0
+}
+
+# --- IPv6 routed (no NAT), dormant unless upstream offers a GUA /64 -------
+# Same-LAN model: the PC SLAACs an address in the upstream /64 (RA from
+# a32radvd.py); the phone answers NDP for it on the LAN (proxy_ndp) and
+# forwards via private table 100 (same number, independent v6 namespace;
+# 5000/5001 verified free there, and v6 has its own 32000-unreachable rule
+# so main is bypassed exactly like v4).
+# PC profile needs: SLAAC with stable EUI-64 (addr-gen-mode eui64,
+# tempaddr off) + metric-700 default. Nothing applies without upstream GUA.
+v6prefix() { # $1=wifi iface -> first GUA /64 or empty
+  ip -6 addr show dev "$1" scope global 2>/dev/null | \
+    grep -m1 -o 'inet6 [23][0-9a-fA-F:]*\/64' | awk '{print $2}'
+}
+v6gw() { # $1=wifi iface -> "gw dev" or empty (first default mentioning it)
+  ip -6 route show table all 2>/dev/null | grep -m1 "^default via .* dev $1" | \
+    sed 's/^default via \([^ ]*\) dev \([^ ]*\).*/\1 \2/'
+}
+v6net() { # $1=prefix/len -> network/len or empty (needs python3)
+  [ -n "$_PY" ] || { _PY=/data/data/com.termux/files/usr/bin/python3; [ -x "$_PY" ] || _PY=python3; }
+  "$_PY" -c "import ipaddress,sys; print(ipaddress.ip_network(sys.argv[1], strict=False))" "$1" 2>/dev/null
+}
+radvd_pid() { cat "$STATE_DIR/a32radvd.pid" 2>/dev/null; }
+radvd_stop() {
+  P=$(radvd_pid); [ -n "$P" ] && kill "$P" 2>/dev/null
+  # Belt and suspenders: pidfiles go stale across daemon restarts (orphaned
+  # children survive), leaving ghost advertisers. Pattern-kill anything left.
+  # (Bracket pattern never matches our own cmdline.)
+  pkill -f "a32radvd[.]py" 2>/dev/null
+  rm -f "$STATE_DIR/a32radvd.pid"
+}
+radvd_start() { # $1=uif $2=prefix $3=lifetime
+  radvd_stop
+  [ -n "$_PY" ] || { _PY=/data/data/com.termux/files/usr/bin/python3; [ -x "$_PY" ] || _PY=python3; }
+  "$_PY" "$MODDIR/a32radvd.py" "$1" "$2" "$3" &
+  echo $! > "$STATE_DIR/a32radvd.pid" 2>/dev/null
+  log "radvd started for $2 on $1"
+}
+route6_ensure() { # $1=UIF $2=WIF
+  PFX=$(v6prefix "$2")
+  GW6=$(v6gw "$2"); G6=${GW6%% *}
+  LIFE=1800; [ -n "$G6" ] || LIFE=0
+  WANT="$PFX $LIFE"
+  HAVE=$(cat "$STATE_DIR/v6prefix" 2>/dev/null)
+  if [ -z "$PFX" ]; then
+    radvd_stop
+    if [ -n "$HAVE" ]; then
+      log "v6 upstream gone (was $HAVE); going dormant"
+      OLDNET=$(v6net "${HAVE%% *}")
+      [ -n "$OLDNET" ] && ip -6 rule del from "$OLDNET" table "$RTABLE" priority "$RTPRI_FROM" 2>/dev/null
+      [ -n "$OLDNET" ] && ip -6 rule del to "$OLDNET" table "$RTABLE" priority "$RTPRI_TO" 2>/dev/null
+      ip -6 route flush table "$RTABLE" 2>/dev/null
+      for a in $(ip -6 neigh show proxy dev "$2" 2>/dev/null | grep -o '^[^ ]*'); do
+        ip -6 neigh del proxy "$a" dev "$2" 2>/dev/null
+      done
+      rm -f "$STATE_DIR/v6prefix"
+    fi
+    return 0
+  fi
+  if [ "$WANT" != "$HAVE" ]; then
+    log "v6 upstream: ${HAVE:-none} -> $WANT"
+    radvd_stop
+    ip -6 route flush table "$RTABLE" 2>/dev/null
+    for a in $(ip -6 neigh show proxy dev "$2" 2>/dev/null | grep -o '^[^ ]*'); do
+      ip -6 neigh del proxy "$a" dev "$2" 2>/dev/null
+    done
+    echo "$WANT" > "$STATE_DIR/v6prefix" 2>/dev/null
+  fi
+  NET=$(v6net "$PFX"); [ -n "$NET" ] || { log "WARN v6 bad prefix $PFX"; return 1; }
+  [ "$(cat /proc/sys/net/ipv6/conf/all/forwarding 2>/dev/null)" = "1" ] || \
+    echo 1 > /proc/sys/net/ipv6/conf/all/forwarding 2>/dev/null || log "WARN v6 forwarding"
+  [ "$(cat /proc/sys/net/ipv6/conf/$2/proxy_ndp 2>/dev/null)" = "1" ] || \
+    echo 1 > /proc/sys/net/ipv6/conf/$2/proxy_ndp 2>/dev/null || log "WARN v6 proxy_ndp"
+  ip -6 route show table "$RTABLE" 2>/dev/null | grep -q "$NET.*dev $2" || \
+    ip -6 route add "$NET" dev "$2" table "$RTABLE" 2>/dev/null || log "WARN v6 lan route"
+  if [ -n "$G6" ]; then
+    ip -6 route show table "$RTABLE" 2>/dev/null | grep -q "^default via $G6" || \
+      ip -6 route replace default via "$G6" dev "$2" table "$RTABLE" 2>/dev/null || log "WARN v6 default"
+  fi
+  ip -6 rule show 2>/dev/null | grep -q "from $NET.*lookup $RTABLE" || \
+    ip -6 rule add from "$NET" table "$RTABLE" priority "$RTPRI_FROM" 2>/dev/null || log "WARN v6 rule from"
+  ip -6 rule show 2>/dev/null | grep -q "to $NET.*lookup $RTABLE" || \
+    ip -6 rule add to "$NET" table "$RTABLE" priority "$RTPRI_TO" 2>/dev/null || log "WARN v6 rule to"
+  ip6tables -N a32fwd6 2>/dev/null
+  ip6tables -C FORWARD -j a32fwd6 2>/dev/null || ip6tables -I FORWARD -j a32fwd6 2>/dev/null
+  ip6tables -C a32fwd6 -i "$1" -o "$2" -j ACCEPT 2>/dev/null || \
+    ip6tables -A a32fwd6 -i "$1" -o "$2" -j ACCEPT 2>/dev/null
+  ip6tables -C a32fwd6 -i "$2" -o "$1" -j ACCEPT 2>/dev/null || \
+    ip6tables -A a32fwd6 -i "$2" -o "$1" -j ACCEPT 2>/dev/null
+  if ip6tables -t nat -S 2>/dev/null | grep -qi masquerade; then
+    log "WARN nat66 present (must be investigated)"
+  fi
+  # Deterministic PC address first: EUI-64 from the (permanently pinned)
+  # v4 neighbor MAC. ND/DAD multicast does NOT reliably populate the kernel
+  # neigh table for the PC's global, so sweeping alone never sees it.
+  PCMAC=$(ip neigh show dev "$1" 2>/dev/null | grep -m1 '192\.168\.50\.2 ' | grep -o '\([0-9a-fA-F]\{2\}:\)\{5\}[0-9a-fA-F]\{2\}' | tr 'A-Z' 'a-z')
+  EUI=""
+  if [ -n "$PCMAC" ]; then
+    [ -n "$_PY" ] || { _PY=/data/data/com.termux/files/usr/bin/python3; [ -x "$_PY" ] || _PY=python3; }
+    CALC=$("$_PY" -c 'import ipaddress,sys; net=ipaddress.ip_network(sys.argv[1],strict=False); m=bytes(int(x,16) for x in sys.argv[2].split(":")); iid=int.from_bytes(bytes((m[0]^2,))+m[1:3]+b"\xff\xfe"+m[3:],"big"); print(net,ipaddress.ip_address(int(net.network_address)+iid))' "$PFX" "$PCMAC" 2>/dev/null)
+    case "$CALC" in *" "*) EUI=${CALC##* };; esac
+  fi
+  SWEPT=$(ip -6 neigh show dev "$1" 2>/dev/null | grep -o '^[^ ]*' | grep ':' | grep -vi '^fe80' | grep -vi '^ff' | sort -u)
+  FRESH=$(echo "$EUI $SWEPT" | tr ' ' '\n' | grep -v '^$' | sort -u | tr '\n' ' ')
+  for a in $FRESH; do
+    ip -6 neigh replace proxy "$a" dev "$2" 2>/dev/null || log "WARN v6 proxy $a"
+    # NOTE: `ip route show` prints host routes WITHOUT the /128 suffix
+    # (same for v4 /32), so match bare address + trailing space.
+    ip -6 route show table "$RTABLE" 2>/dev/null | grep -q "^$a .*dev $1" || \
+      ip -6 route add "$a/128" dev "$1" table "$RTABLE" 2>/dev/null || log "WARN v6 host route $a"
+  done
+  for a in $(ip -6 neigh show proxy dev "$2" 2>/dev/null | grep -o '^[^ ]*' | sort -u); do
+    case " $FRESH " in *" $a "*) ;; *) ip -6 neigh del proxy "$a" dev "$2" 2>/dev/null;; esac
+  done
+  for a in $(ip -6 route show table "$RTABLE" 2>/dev/null | awk '$1 !~ /\// && $1 != "default" {print $1}' | sort -u); do
+    case " $FRESH " in *" $a "*) ;; *) ip -6 route del "$a/128" table "$RTABLE" 2>/dev/null;; esac
+  done
+  # The downstream link must not autoconfigure itself: a global on rndis0
+  # poisons source selection and confuses future debugging. Refuse RAs here
+  # and remove any SLAAC globals (link-local stays; only globals go).
+  [ "$(cat /proc/sys/net/ipv6/conf/$1/accept_ra 2>/dev/null)" = "0" ] || \
+    echo 0 > /proc/sys/net/ipv6/conf/$1/accept_ra 2>/dev/null || log "WARN v6 accept_ra"
+  for a in $(ip -6 addr show dev "$1" scope global 2>/dev/null | grep -o 'inet6 [^ ]*' | awk '{print $2}'); do
+    ip -6 addr del "$a" dev "$1" 2>/dev/null && log "v6 removed downstream global $a"
+  done
+  RP=$(radvd_pid)
+  if [ -z "$RP" ] || ! grep -qa a32radvd /proc/"$RP"/cmdline 2>/dev/null; then
+    radvd_start "$1" "$PFX" "$LIFE"
+  fi
+  return 0
+}
+
+log "starting (subnet=$USB_SUBNET ip=$USB_IP)"
+while true; do
+  if ! gadget_ensure; then sleep "$TICK"; continue; fi
+  UIF=$(usb_iface)
+  if [ -z "$UIF" ]; then sleep "$TICK"; continue; fi
+  echo "$UIF" > "$STATE_DIR/usb_if" 2>/dev/null
+  WIF=$(wifi_ready)
+  if [ -z "$WIF" ]; then
+    echo "down" > "$STATE_DIR/upstream" 2>/dev/null
+    sleep "$TICK"; continue
+  fi
+  echo "$WIF" > "$STATE_DIR/upstream" 2>/dev/null
+  WNET=$(wifi_net "$WIF")
+  if overlap "$WNET" "$USB_SUBNET"; then
+    log "ERR USB subnet $USB_SUBNET overlaps Wi-Fi $WNET; change a32router.conf"
+    sleep 30; continue
+  fi
+  if net_ensure "$UIF" "$WIF"; then
+    echo "up $UIF $WIF" > "$STATE_DIR/status" 2>/dev/null
+  fi
+  sleep "$TICK"
+done

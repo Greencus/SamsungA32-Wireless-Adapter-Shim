@@ -1,0 +1,57 @@
+===GETENFORCE===
+Enforcing
+===SESTATUS===
+/system/bin/sh: sestatus: inaccessible or not found
+===SELINUX_PROPS===
+[ro.boottime.init.selinux]: [548863307]
+[ro.control_privapp_permissions]: [enforce]
+[selinux.restorecon_recursive]: [/data/misc_ce/0]
+===MAGISK_VERSION===
+Unrecognized argument: --version
+
+Magisk - Multi-purpose Utility
+
+Usage: magisk [applet [arguments]...]
+   or: magisk [options]...
+
+Options:
+   -c                        print current binary version
+   -v                        print running daemon version
+   -V                        print running daemon version code
+   --list                    list all available applets
+   --remove-modules [-n]     remove all modules, reboot if -n is not provided
+   --install-module ZIP      install a module zip file
+
+Advanced Options (Internal APIs):
+   --daemon                  manually start magisk daemon
+   --stop                    remove all magisk changes and stop daemon
+   --[init trigger]          callback on init triggers. Valid triggers:
+                             post-fs-data, service, boot-complete, zygote-restart
+   --unlock-blocks           set BLKROSET flag to OFF for all block devices
+   --restorecon              restore selinux context on Magisk files
+   --clone-attr SRC DEST     clone permission, owner, and selinux context
+   --clone SRC DEST          clone SRC to DEST
+   --sqlite SQL              exec SQL commands to Magisk database
+   --path                    print Magisk tmpfs mount path
+   --denylist ARGS           denylist config CLI
+   --preinit-device          resolve a device to store preinit files
+
+Available applets:
+     su, resetprop
+
+===MAGISK_SU===
+30.4:MAGISK:R
+===MAGISK_PATH===
+/debug_ramdisk/magisk
+/debug_ramdisk/su
+total 4005
+drwxr-xr-x 3 root root    3452 2025-12-28 23:33 .
+drwx------ 6 root root    3452 2025-12-28 23:29 ..
+-rwxr-xr-x 1 root root    4034 2025-12-28 23:33 addon.d.sh
+-rwxr-xr-x 1 root root    7197 2025-12-28 23:33 boot_patch.sh
+-rwxr-xr-x 1 root root 1710600 1979-11-30 00:00 busybox
+drwxr-xr-x 2 root root    3452 2025-12-28 23:33 chromeos
+-rwxr-xr-x 1 root root    5208 1979-11-30 00:00 init-ld
+-rwxr-xr-x 1 root root  412448 1979-11-30 00:00 magisk
+-rwxr-xr-x 1 root root  260772 2025-12-28 23:33 magisk32
+===MAGISK_PROPS===

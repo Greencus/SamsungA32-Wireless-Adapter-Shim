@@ -1,0 +1,284 @@
+===PROC_VERSION===
+Linux version 4.14.352-openela (murimi14@justinserver) (Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79), LLD 11.0.1 (/buildbot/tmp/tmp6_m7QH b397f81060ce6d701042b782172ed13bee898b79)) #3 SMP PREEMPT Sat Feb 15 00:26:37 CST 2025
+===UNAME===
+Linux localhost 4.14.352-openela #3 SMP PREEMPT Sat Feb 15 00:26:37 CST 2025 aarch64 Toybox
+===PROC_CMDLINE===
+console=tty0 console=ttyMT3,921600n1 root=/dev/ram vmalloc=496M slub_max_order=0 slub_debug=0  root=/dev/ram vmalloc=400M swiotlb=noforce cgroup.memory=nosocket,nokmem firmware_class.path=/vendor/firmware page_owner=on loop.max_part=7 has_battery_removed=0 ramoops.mem_address=0x4d010000 ramoops.mem_size=0xe0000 ramoops.pmsg_size=0x10000 ramoops.console_size=0x40000 androidboot.boot_devices=bootdevice,soc/11230000.mmc,11230000.mmc bootopt=64S3,32N2,64N2 pm.sleep_mode=1 root=/dev/ram  androidboot.verifiedbootstate=orange androidboot.atm=disabled androidboot.meta_log_disable=0 androidboot.dram_info=00,00,00,4G androidboot.ddr_size=4096MB androidboot.revision=4 sec_debug.dump_sink=0x0 sec_debug.upload_count=0 softdog.soft_margin=100 softdog.soft_panic=1 sec_debug=0 sec_watchdog.sec_pet=5 androidboot.debug_level=0x4f4c androidboot.odin_download=1 androidboot.bootloader=A325MUBSBDXL1 sec_debug.reset_rwc=0 sec_debug.reset_reason=9 androidboot.sn.param.offset=3147696 androidboot.im.param.offset=3147536 androidboot.me.param.offset=3147616 androidboot.pr.param.offset=3147776 androidboot.sku.param.offset=3147856 androidboot.prototype_offset=3148544 androidboot.sales.param.offset=3146268 androidboot.sales_code=TPA androidboot.carrierid.param.offset=3146304 androidboot.carrierid=TPA pmic_info=27 ccic_info=1 charging_mode=0x3000 lcdtype=8388612 fb_reserved_free=1 androidboot.hmac_mismatch=0 androidboot.sec_atd.tty=/dev/ttyS0 factory_mode=0 fg_reset=0 androidboot.fmm_lock=0 sec_debug.fmm_lock_offset=3146356 androidboot.ap_serial=0x428b1d45 androidboot.hdm_status=NONE console=tty0 console=/dev/null,115200n1 mtk_printk_ctrl.disable_uart=1 androidboot.serialno=R58R75KGLGV androidboot.uniqueno=428b1d453cc3f8d1 androidboot.bootreason=PowerKey gpt=1 usb2jtag_mode=0 androidboot.dtb_idx=0 androidboot.dtbo_idx=2  androidboot.kg=0x6  androidboot.kg.bit=00  androidboot.em.did=20428cc306d82111  androidboot.em.model=SM-A325M  androidboot.em.status=0x0  androidboot.sb.debug0=0x0,0x0,0x0,0x0  androidboot.rp=11  androidboot.bromcmddisable=0x1  androidboot.svb.ver=SVB1.0  androidboot.ulcnt=1  androidboot.bromcmddisable=0x1  androidboot.warranty_bit=1  androidboot.wb.hs=e00  androidboot.wb.snapQB=тттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттттт
+===PROC_CPUINFO===
+processor	: 0
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x1
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 1
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x1
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 2
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x1
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 3
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x1
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 4
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x1
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 5
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x1
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 6
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x3
+CPU part	: 0xd0a
+CPU revision	: 1
+
+processor	: 7
+BogoMIPS	: 26.00
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x3
+CPU part	: 0xd0a
+CPU revision	: 1
+
+Hardware	: MT6769V/CT
+===CONFIG_GZ===
+#
+# Automatically generated file; DO NOT EDIT.
+# Linux/arm64 4.14.352-openela Kernel Configuration
+#
+CONFIG_ARM64=y
+CONFIG_64BIT=y
+CONFIG_ARCH_PHYS_ADDR_T_64BIT=y
+CONFIG_MMU=y
+CONFIG_ARM64_PAGE_SHIFT=12
+CONFIG_ARM64_CONT_SHIFT=4
+CONFIG_ARCH_MMAP_RND_BITS_MIN=18
+CONFIG_ARCH_MMAP_RND_BITS_MAX=24
+CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MIN=11
+CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=16
+CONFIG_NO_IOPORT_MAP=y
+CONFIG_STACKTRACE_SUPPORT=y
+CONFIG_ILLEGAL_POINTER_VALUE=0xdead000000000000
+CONFIG_LOCKDEP_SUPPORT=y
+CONFIG_TRACE_IRQFLAGS_SUPPORT=y
+CONFIG_RWSEM_XCHGADD_ALGORITHM=y
+CONFIG_GENERIC_BUG=y
+CONFIG_GENERIC_BUG_RELATIVE_POINTERS=y
+CONFIG_GENERIC_HWEIGHT=y
+CONFIG_GENERIC_CSUM=y
+CONFIG_GENERIC_CALIBRATE_DELAY=y
+CONFIG_ZONE_DMA=y
+CONFIG_HAVE_GENERIC_GUP=y
+CONFIG_ARCH_DMA_ADDR_T_64BIT=y
+CONFIG_NEED_DMA_MAP_STATE=y
+CONFIG_NEED_SG_DMA_LENGTH=y
+CONFIG_SMP=y
+CONFIG_SWIOTLB=y
+CONFIG_IOMMU_HELPER=y
+CONFIG_KERNEL_MODE_NEON=y
+CONFIG_FIX_EARLYCON_MEM=y
+CONFIG_PGTABLE_LEVELS=3
+CONFIG_ARCH_SUPPORTS_UPROBES=y
+CONFIG_ARCH_PROC_KCORE_TEXT=y
+CONFIG_DEFCONFIG_LIST="/lib/modules/$UNAME_RELEASE/.config"
+# CONFIG_TOOLS_SUPPORT_RELR is not set
+CONFIG_IRQ_WORK=y
+CONFIG_BUILDTIME_EXTABLE_SORT=y
+CONFIG_THREAD_INFO_IN_TASK=y
+
+#
+# General setup
+#
+CONFIG_INIT_ENV_ARG_LIMIT=32
+CONFIG_CROSS_COMPILE="aarch64-linux-android-"
+# CONFIG_COMPILE_TEST is not set
+CONFIG_LOCALVERSION=""
+CONFIG_LOCALVERSION_AUTO=y
+CONFIG_DEFAULT_HOSTNAME="(none)"
+CONFIG_SWAP=y
+# CONFIG_SYSVIPC is not set
+# CONFIG_POSIX_MQUEUE is not set
+CONFIG_CROSS_MEMORY_ATTACH=y
+# CONFIG_FHANDLE is not set
+# CONFIG_USELIB is not set
+CONFIG_AUDIT=y
+CONFIG_HAVE_ARCH_AUDITSYSCALL=y
+CONFIG_AUDITSYSCALL=y
+CONFIG_AUDIT_WATCH=y
+CONFIG_AUDIT_TREE=y
+
+#
+# IRQ subsystem
+#
+CONFIG_GENERIC_IRQ_PROBE=y
+CONFIG_GENERIC_IRQ_SHOW=y
+CONFIG_GENERIC_IRQ_SHOW_LEVEL=y
+CONFIG_GENERIC_IRQ_EFFECTIVE_AFF_MASK=y
+CONFIG_GENERIC_IRQ_MIGRATION=y
+CONFIG_HARDIRQS_SW_RESEND=y
+CONFIG_IRQ_DOMAIN=y
+CONFIG_IRQ_DOMAIN_HIERARCHY=y
+CONFIG_HANDLE_DOMAIN_IRQ=y
+CONFIG_IRQ_FORCED_THREADING=y
+CONFIG_SPARSE_IRQ=y
+CONFIG_ARCH_CLOCKSOURCE_DATA=y
+CONFIG_GENERIC_TIME_VSYSCALL=y
+CONFIG_GENERIC_CLOCKEVENTS=y
+CONFIG_ARCH_HAS_TICK_BROADCAST=y
+CONFIG_GENERIC_CLOCKEVENTS_BROADCAST=y
+
+#
+# Timers subsystem
+#
+CONFIG_TICK_ONESHOT=y
+CONFIG_NO_HZ_COMMON=y
+# CONFIG_HZ_PERIODIC is not set
+CONFIG_NO_HZ_IDLE=y
+# CONFIG_NO_HZ_FULL is not set
+CONFIG_NO_HZ=y
+CONFIG_HIGH_RES_TIMERS=y
+
+#
+# CPU/Task time and stats accounting
+#
+CONFIG_TICK_CPU_ACCOUNTING=y
+# CONFIG_VIRT_CPU_ACCOUNTING_GEN is not set
+# CONFIG_IRQ_TIME_ACCOUNTING is not set
+# CONFIG_SCHED_WALT is not set
+# CONFIG_BSD_PROCESS_ACCT is not set
+CONFIG_TASKSTATS=y
+# CONFIG_TASK_DELAY_ACCT is not set
+CONFIG_TASK_XACCT=y
+CONFIG_TASK_IO_ACCOUNTING=y
+CONFIG_PSI=y
+# CONFIG_PSI_DEFAULT_DISABLED is not set
+
+#
+# RCU Subsystem
+#
+CONFIG_PREEMPT_RCU=y
+# CONFIG_RCU_EXPERT is not set
+CONFIG_SRCU=y
+CONFIG_TREE_SRCU=y
+CONFIG_TASKS_RCU=y
+CONFIG_RCU_STALL_COMMON=y
+CONFIG_RCU_NEED_SEGCBLIST=y
+CONFIG_BUILD_BIN2C=y
+CONFIG_IKCONFIG=y
+CONFIG_IKCONFIG_PROC=y
+CONFIG_IKHEADERS=y
+CONFIG_LOG_BUF_SHIFT=19
+CONFIG_LOG_CPU_MAX_BUF_SHIFT=12
+CONFIG_PRINTK_SAFE_LOG_BUF_SHIFT=13
+CONFIG_GENERIC_SCHED_CLOCK=y
+
+#
+# Scheduler features
+#
+CONFIG_UCLAMP_TASK=y
+CONFIG_UCLAMP_GROUPS_COUNT=32
+CONFIG_UCLAMP_MAP_OPP=y
+# CONFIG_NONLINEAR_FREQ_CTL is not set
+
+#
+# FAIR Scheuler tunables
+#
+# CONFIG_PELT_UTIL_HALFLIFE_32 is not set
+CONFIG_PELT_UTIL_HALFLIFE_16=y
+# CONFIG_PELT_UTIL_HALFLIFE_8 is not set
+CONFIG_ARCH_SUPPORTS_NUMA_BALANCING=y
+CONFIG_CGROUPS=y
+CONFIG_PAGE_COUNTER=y
+CONFIG_MEMCG=y
+CONFIG_MEMCG_SWAP=y
+CONFIG_MEMCG_SWAP_ENABLED=y
+CONFIG_MEMCG_FORCE_USE_VM_SWAPPINESS=y
+# CONFIG_BLK_CGROUP is not set
+CONFIG_CGROUP_SCHED=y
+CONFIG_FAIR_GROUP_SCHED=y
+# CONFIG_CFS_BANDWIDTH is not set
+# CONFIG_RT_GROUP_SCHED is not set
+CONFIG_UCLAMP_TASK_GROUP=y
+# CONFIG_CGROUP_PIDS is not set
+# CONFIG_CGROUP_RDMA is not set
+CONFIG_CGROUP_FREEZER=y
+CONFIG_CPUSETS=y
+CONFIG_PROC_PID_CPUSET=y
+# CONFIG_CGROUP_DEVICE is not set
+CONFIG_CGROUP_CPUACCT=y
+# CONFIG_CGROUP_PERF is not set
+CONFIG_CGROUP_BPF=y
+CONFIG_CGROUP_DEBUG=y
+CONFIG_SOCK_CGROUP_DATA=y
+# CONFIG_CHECKPOINT_RESTORE is not set
+CONFIG_NAMESPACES=y
+CONFIG_UTS_NS=y
+# CONFIG_USER_NS is not set
+CONFIG_PID_NS=y
+CONFIG_NET_NS=y
+# CONFIG_SCHED_AUTOGROUP is not set
+CONFIG_SCHED_TUNE=y
+CONFIG_DEFAULT_USE_ENERGY_AWARE=y
+# CONFIG_SYSFS_DEPRECATED is not set
+# CONFIG_RELAY is not set
+CONFIG_BLK_DEV_INITRD=y
+CONFIG_INITRAMFS_SOURCE=""
+# CONFIG_INITRAMFS_FORCE is not set
+CONFIG_RD_GZIP=y
+# CONFIG_RD_BZIP2 is not set
+# CONFIG_RD_LZMA is not set
+# CONFIG_RD_XZ is not set
+# CONFIG_RD_LZO is not set
+# CONFIG_RD_LZ4 is not set
+CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE=y
+# CONFIG_CC_OPTIMIZE_FOR_SIZE is not set
+CONFIG_SYSCTL=y
+CONFIG_HAVE_UID16=y
+CONFIG_SYSCTL_EXCEPTION_TRACE=y
+CONFIG_BPF=y
+CONFIG_EXPERT=y
+CONFIG_UID16=y
+CONFIG_MULTIUSER=y
+# CONFIG_SGETMASK_SYSCALL is not set
+CONFIG_SYSFS_SYSCALL=y
+CONFIG_SYSCTL_SYSCALL=y
+===CONFIG_GZ_LS===
+ls: /proc/config: No such file or directory
+-r--r--r-- 1 root root 36067 2026-09-06 20:43 /proc/config.gz

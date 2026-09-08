@@ -1,0 +1,46 @@
+# a32wifiadapter — push source, docs and evidence; rebuild the rest.
+#
+# KEPT deliberately (source of truth):
+#   README.md, docs/, a32router/ (module source), pc/ (scripts+units),
+#   audit/ (report + raw evidence), test/0*.log (engineering logs),
+#   test/*.py (probe tools), test/btsnooz_hci.log (cited BT evidence).
+
+# ---- Build artifacts (reproducible: see README Status section) ----
+# Magisk zips are built from a32router/, e.g.:
+#   (cd a32router && zip -qr ../a32router-vX.Y.Z.zip . \
+#     -x 'state/*' 'a32router.log' '*.old' '__pycache__/*')
+*.zip
+
+# ---- Python bytecode ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---- Test-runner caches ----
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# ---- Live daemon logs from manual runs (repo root only;
+# ---- test/*.log are curated engineering history — KEEP those) ----
+/*.log
+
+# ---- Local runtime droppings our tooling may create ----
+*.tmp
+*.pid
+*.leases
+*.log.*
+*.old
+*.bak
+
+# ---- Agent/harness session state (tool bookkeeping, not project) ----
+.pi/
+
+# ---- Editor / OS noise ----
+.DS_Store
+*~
+*.swp
+*.swo
+.vscode/
+.idea/

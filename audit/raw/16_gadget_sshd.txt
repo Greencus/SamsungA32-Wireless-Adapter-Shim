@@ -1,0 +1,53 @@
+===G1===
+total 0
+drwxrwx---  6 shell shell    0 2026-09-06 20:42 .
+drwxr-xr-x  3 root  root     0 2026-09-05 15:26 ..
+-rw-r--r--  1 root  root  4096 2026-09-06 19:56 UDC
+-rw-r--r--  1 root  root  4096 2026-09-06 20:45 bDeviceClass
+-rw-r--r--  1 root  root  4096 2026-09-06 20:45 bDeviceProtocol
+-rw-r--r--  1 root  root  4096 2026-09-06 20:45 bDeviceSubClass
+-rw-r--r--  1 root  root  4096 2026-09-06 20:45 bMaxPacketSize0
+-rw-r--r--  1 root  root  4096 2026-09-05 15:26 bcdDevice
+-rw-r--r--  1 root  root  4096 2026-09-05 15:26 bcdUSB
+drwxr-xr-x  3 root  root     0 2026-09-05 15:26 configs
+drwxr-xr-x 19 root  root     0 2026-09-06 20:43 functions
+-rw-r--r--  1 root  root  4096 2026-09-05 15:26 idProduct
+-rw-r--r--  1 root  root  4096 2026-09-05 15:26 idVendor
+drwxr-xr-x  2 root  root     0 2026-09-06 20:42 os_desc
+drwxr-xr-x  3 root  root     0 2026-09-05 15:26 strings
+--str--
+musb-hdrc
+--funcs--
+accessory.gs2
+acm.gs0
+acm.gs1
+acm.gs2
+audio_source.gs3
+conn_gadget.gs0
+dm.gs3
+ffs.adb
+ffs.mtp
+ffs.ptp
+mass_storage.usb0
+midi.gs5
+ss_mon.mtp
+ss_mon.ptp
+via_atc.gs0
+via_ets.gs0
+via_modem.gs0
+--configs--
+/config/usb_gadget/g1
+/config/usb_gadget/g1/os_desc
+/config/usb_gadget/g1/os_desc/b.1
+/config/usb_gadget/g1/os_desc/qw_sign
+/config/usb_gadget/g1/os_desc/b_vendor_code
+/config/usb_gadget/g1/os_desc/use
+/config/usb_gadget/g1/strings
+/config/usb_gadget/g1/strings/0x409
+/config/usb_gadget/g1/strings/0x409/serialnumber
+/config/usb_gadget/g1/strings/0x409/product
+===NC===
+lrwxr-xr-x 1 root shell 6 2008-12-31 19:00 /system/bin/nc -> toybox
+lrwxr-xr-x 1 root shell 6 2008-12-31 19:00 /system/bin/netcat -> toybox
+===DROPBEAR===
+OpenSSH_10.2p1, OpenSSL 3.6.3 9 Jun 2026

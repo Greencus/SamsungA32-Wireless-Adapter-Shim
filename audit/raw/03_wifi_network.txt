@@ -1,0 +1,537 @@
+===IP_LINK===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: rmnet0: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+3: rmnet1: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+4: rmnet2: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+5: rmnet3: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+6: rmnet4: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+7: rmnet5: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+8: rmnet6: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+9: rmnet7: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+10: rmnet8: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+11: rmnet9: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+12: rmnet10: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+13: rmnet11: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+14: rmnet12: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+15: rmnet13: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+16: rmnet14: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+17: rmnet15: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+18: rmnet16: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+19: rmnet17: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+20: rmnet18: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+21: rmnet19: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+22: rmnet20: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/[519] 
+23: ccmni-lan: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 
+24: dummy0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/ether 22:36:3b:1e:a2:2c brd ff:ff:ff:ff:ff:ff
+25: ifb0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32
+    link/ether f6:94:15:ba:c5:82 brd ff:ff:ff:ff:ff:ff
+26: ifb1: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32
+    link/ether 2a:3d:57:d2:ce:be brd ff:ff:ff:ff:ff:ff
+27: ip_vti0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+28: ip6_vti0@NONE: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/tunnel6 :: brd ::
+29: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+30: ip6tnl0@NONE: <NOARP> mtu 1452 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/tunnel6 :: brd ::
+32: epdg4: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+33: epdg0: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+34: epdg1: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+35: epdg2: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+36: epdg3: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+37: epdg5: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+38: epdg6: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+39: epdg7: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none 
+40: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DORMANT group default qlen 3000
+    link/ether 9e:6d:54:ea:9b:50 brd ff:ff:ff:ff:ff:ff
+41: p2p0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether ee:7c:b6:d5:73:5c brd ff:ff:ff:ff:ff:ff
+42: swlan0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether ea:7c:b6:d5:73:5c brd ff:ff:ff:ff:ff:ff
+===IP_ADDR===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: rmnet0: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+3: rmnet1: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+4: rmnet2: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+5: rmnet3: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+6: rmnet4: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+7: rmnet5: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+8: rmnet6: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+9: rmnet7: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+10: rmnet8: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+11: rmnet9: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+12: rmnet10: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+13: rmnet11: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+14: rmnet12: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+15: rmnet13: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+16: rmnet14: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+17: rmnet15: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+18: rmnet16: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+19: rmnet17: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+20: rmnet18: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+21: rmnet19: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+22: rmnet20: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/[519] 
+23: ccmni-lan: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 
+24: dummy0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/ether 22:36:3b:1e:a2:2c brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::2036:3bff:fe1e:a22c/64 scope link 
+       valid_lft forever preferred_lft forever
+25: ifb0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 32
+    link/ether f6:94:15:ba:c5:82 brd ff:ff:ff:ff:ff:ff
+26: ifb1: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 32
+    link/ether 2a:3d:57:d2:ce:be brd ff:ff:ff:ff:ff:ff
+27: ip_vti0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+28: ip6_vti0@NONE: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/tunnel6 :: brd ::
+29: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+30: ip6tnl0@NONE: <NOARP> mtu 1452 qdisc noop state DOWN group default qlen 1000
+    link/tunnel6 :: brd ::
+32: epdg4: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+33: epdg0: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+34: epdg1: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+35: epdg2: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+36: epdg3: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+37: epdg5: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+38: epdg6: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+39: epdg7: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none 
+40: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 3000
+    link/ether 9e:6d:54:ea:9b:50 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.3/24 brd 192.168.1.255 scope global wlan0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::9c6d:54ff:feea:9b50/64 scope link 
+       valid_lft forever preferred_lft forever
+41: p2p0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ee:7c:b6:d5:73:5c brd ff:ff:ff:ff:ff:ff
+42: swlan0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ea:7c:b6:d5:73:5c brd ff:ff:ff:ff:ff:ff
+===IP_ROUTE===
+192.168.1.0/24 dev wlan0 proto kernel scope link src 192.168.1.3 
+===IP_ROUTE_TABLE===
+default dev dummy0 table dummy0 proto static scope link 
+default via 192.168.1.1 dev wlan0 table wlan0 proto static 
+192.168.1.0/24 dev wlan0 table wlan0 proto static scope link 
+192.168.1.0/24 dev wlan0 table wlan0_local proto static scope link 
+224.0.0.0/24 dev wlan0 table wlan0_local proto static scope link 
+192.168.1.0/24 dev wlan0 proto kernel scope link src 192.168.1.3 
+broadcast 127.0.0.0 dev lo table local proto kernel scope link src 127.0.0.1 
+local 127.0.0.0/8 dev lo table local proto kernel scope host src 127.0.0.1 
+local 127.0.0.1 dev lo table local proto kernel scope host src 127.0.0.1 
+broadcast 127.255.255.255 dev lo table local proto kernel scope link src 127.0.0.1 
+broadcast 192.168.1.0 dev wlan0 table local proto kernel scope link src 192.168.1.3 
+local 192.168.1.3 dev wlan0 table local proto kernel scope host src 192.168.1.3 
+broadcast 192.168.1.255 dev wlan0 table local proto kernel scope link src 192.168.1.3 
+fe80::/64 dev dummy0 table dummy0 proto kernel metric 256 pref medium
+default dev dummy0 table dummy0 proto static metric 1024 pref medium
+fe80::/64 dev wlan0 table wlan0 proto kernel metric 256 pref medium
+fe80::/64 dev wlan0 table wlan0 proto static metric 1024 pref medium
+ff00::/8 dev wlan0 table wlan0 proto static metric 1024 pref medium
+fe80::/64 dev wlan0 table wlan0_local proto static metric 1024 pref medium
+ff00::/8 dev wlan0 table wlan0_local proto static metric 1024 pref medium
+local ::1 dev lo table local proto kernel metric 0 pref medium
+local fe80::2036:3bff:fe1e:a22c dev dummy0 table local proto kernel metric 0 pref medium
+local fe80::9c6d:54ff:feea:9b50 dev wlan0 table local proto kernel metric 0 pref medium
+ff00::/8 dev dummy0 table local proto kernel metric 256 pref medium
+ff00::/8 dev wlan0 table local proto kernel metric 256 pref medium
+===SYS_CLASS_NET===
+total 0
+drwxr-xr-x   2 root root 0 2026-09-06 20:43 .
+drwxr-xr-x 113 root root 0 2026-09-05 15:26 ..
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 ccmni-lan -> ../../devices/virtual/net/ccmni-lan
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 dummy0 -> ../../devices/virtual/net/dummy0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg0 -> ../../devices/virtual/net/epdg0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg1 -> ../../devices/virtual/net/epdg1
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg2 -> ../../devices/virtual/net/epdg2
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg3 -> ../../devices/virtual/net/epdg3
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg4 -> ../../devices/virtual/net/epdg4
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg5 -> ../../devices/virtual/net/epdg5
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg6 -> ../../devices/virtual/net/epdg6
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 epdg7 -> ../../devices/virtual/net/epdg7
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 ifb0 -> ../../devices/virtual/net/ifb0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 ifb1 -> ../../devices/virtual/net/ifb1
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 ip6_vti0 -> ../../devices/virtual/net/ip6_vti0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 ip6tnl0 -> ../../devices/virtual/net/ip6tnl0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 ip_vti0 -> ../../devices/virtual/net/ip_vti0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 lo -> ../../devices/virtual/net/lo
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 p2p0 -> ../../devices/virtual/net/p2p0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet0 -> ../../devices/virtual/net/rmnet0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet1 -> ../../devices/virtual/net/rmnet1
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet10 -> ../../devices/virtual/net/rmnet10
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet11 -> ../../devices/virtual/net/rmnet11
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet12 -> ../../devices/virtual/net/rmnet12
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet13 -> ../../devices/virtual/net/rmnet13
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet14 -> ../../devices/virtual/net/rmnet14
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet15 -> ../../devices/virtual/net/rmnet15
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet16 -> ../../devices/virtual/net/rmnet16
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet17 -> ../../devices/virtual/net/rmnet17
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet18 -> ../../devices/virtual/net/rmnet18
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet19 -> ../../devices/virtual/net/rmnet19
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet2 -> ../../devices/virtual/net/rmnet2
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet20 -> ../../devices/virtual/net/rmnet20
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet3 -> ../../devices/virtual/net/rmnet3
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet4 -> ../../devices/virtual/net/rmnet4
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet5 -> ../../devices/virtual/net/rmnet5
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet6 -> ../../devices/virtual/net/rmnet6
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet7 -> ../../devices/virtual/net/rmnet7
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet8 -> ../../devices/virtual/net/rmnet8
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 rmnet9 -> ../../devices/virtual/net/rmnet9
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 sit0 -> ../../devices/virtual/net/sit0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 swlan0 -> ../../devices/virtual/net/swlan0
+lrwxrwxrwx   1 root root 0 2026-09-06 20:43 wlan0 -> ../../devices/platform/18000000.wifi/net/wlan0
+===WLAN_DRIVER===
+-- /sys/class/net/ccmni-lan/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/dummy0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg1/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg2/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg3/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg4/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg5/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg6/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/epdg7/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/ifb0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/ifb1/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/ip6_vti0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/ip6tnl0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/ip_vti0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/lo/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/p2p0/
+total 0
+drwxr-xr-x  6 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet1/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet10/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet11/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet12/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet13/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet14/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet15/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet16/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet17/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet18/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet19/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet2/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet20/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet3/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet4/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet5/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet6/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet7/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet8/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/rmnet9/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/sit0/
+total 0
+drwxr-xr-x  5 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/swlan0/
+total 0
+drwxr-xr-x  6 root root    0 2026-09-06 20:43 .
+drwxr-xr-x 42 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+-- /sys/class/net/wlan0/
+total 0
+drwxr-xr-x  6 root root    0 2026-09-06 20:43 .
+drwxr-xr-x  3 root root    0 2026-09-06 20:43 ..
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_assign_type
+-r--r--r--  1 root root 4096 2026-09-06 20:43 addr_len
+/sys/bus/platform/drivers/wlan
+===IEE80211===
+phy0
+===IW_DEV===
+/system/bin/sh: iw: inaccessible or not found
+===IWLIST===
+/system/bin/sh: iw: inaccessible or not found
+===IWCONFIG===
+/system/bin/sh: iwconfig: inaccessible or not found
+===WIFI_PROPS===
+[init.svc.vendor.wifi_hal_legacy]: [running]
+[init.svc.wificond]: [running]
+[init.svc.wlan_assistant]: [running]
+[init.svc_debug_pid.vendor.wifi_hal_legacy]: [803]
+[init.svc_debug_pid.wificond]: [944]
+[init.svc_debug_pid.wlan_assistant]: [924]
+[mediatek.wlan.ctia]: [0]
+[persist.adb.wifi.guid]: [adb-R58R75KGLGV-mWcsyT]
+[persist.log.tag.PowerHalWifiMonitor]: [S]
+[persist.vendor.connsys.wifi_fw_ver]: [240904095302000]
+[persist.vendor.viwifi_support]: [1]
+[ro.boottime.vendor.wifi_hal_legacy]: [7541985538]
+[ro.boottime.wificond]: [8277297846]
+[ro.boottime.wlan_assistant]: [8225135461]
+[ro.mediatek.wlan.p2p]: [1]
+[ro.mediatek.wlan.wsc]: [1]
+[ro.telephony.iwlan_operation_mode]: [legacy]
+[ro.vendor.connsys.dedicated.log.port]: [bt,wifi,gps,mcu]
+[ro.vendor.wifi.sap.concurrent.iface]: [ap1]
+[ro.vendor.wifi.sap.interface]: [swlan0]
+[ro.vendor.wlan.chrdev]: [wmt_chrdev_wifi]
+[ro.vendor.wlan.gen]: [gen4m]
+[ro.vendor.wlan.standalone.log]: [y]
+[ro.wifi.channels]: []
+[sys.wifitracing.started]: [1]
+[vendor.wifi.dualconcurrent.interface]: [swlan0]
+[wifi.active.interface]: [wlan0]
+[wifi.direct.interface]: [p2p0]
+[wifi.interface]: [wlan0]
+[wifi.tethering.interface]: [ap0]
+[wlan.driver.status]: [ok]

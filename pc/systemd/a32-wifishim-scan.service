@@ -1,0 +1,16 @@
+[Unit]
+Description=A32 Wi-Fi shim: scan injector (real APs as fake beacons)
+Documentation=file:///usr/local/lib/a32wifishim/README.md
+After=a32-wifishim-setup.service NetworkManager.service
+Wants=a32-wifishim-setup.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/lib/a32wifishim/wifishim-scan.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

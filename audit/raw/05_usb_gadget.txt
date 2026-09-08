@@ -1,0 +1,134 @@
+===CFGFS_KERNEL===
+total 0
+dr-xr-xr-x  2 root root 0 2026-09-06 20:42 .
+drwxr-xr-x 16 root root 0 2026-09-05 15:26 ..
+===CFGFS_UDC===
+/sys/kernel/config
+===LEGACY_CFGFS_ROOT===
+total 4
+drwxr-xr-x   4 root   root            0 1969-12-31 19:00 .
+drwxr-xr-x  30 root   root         4096 2008-12-31 19:00 ..
+drwxrwx--- 268 system package_info    0 2026-09-05 15:27 sdcardfs
+drwxr-xr-x   3 root   root            0 2026-09-05 15:26 usb_gadget
+total 0
+drwxr-xr-x 3 root  root  0 2026-09-05 15:26 .
+drwxr-xr-x 4 root  root  0 1969-12-31 19:00 ..
+drwxrwx--- 6 shell shell 0 2026-09-06 20:42 g1
+===USBDIR_SYS===
+android0
+f_audio_source
+f_conn_gadget
+f_midi
+===DUMPSYS_USB===
+USB MANAGER STATE (dumpsys usb):
+{
+  device_manager={
+    handler={
+      current_functions_applied=true
+      screen_locked=false
+      connected=true
+      configured=true
+      host_connected=false
+      source_power=false
+      sink_power=true
+      usb_charging=true
+      hide_usb_notification=false
+      audio_accessory_connected=false
+      kernel_state=CONFIGURED
+    }
+    USB Event Log=UsbDeviceManager activity
+    USB Event=[
+      09-05 15:27:06:799 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 00:48:29:600 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=10142, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 00:48:29:606 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=10143, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 00:48:29:613 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 00:48:29:724 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=10144, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 00:48:29:728 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=10145, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 00:48:29:733 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 04:13:21:529 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=11676, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 04:13:24:539 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 13:37:41:668 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16582, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:41:683 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16583, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:41:684 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 13:37:41:688 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 13:37:48:479 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16585, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:48:588 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16586, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:48:593 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16587, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:48:594 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 13:37:49:430 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16590, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:49:435 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16591, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:49:556 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16592, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:49:559 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=16593, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 13:37:49:561 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 17:37:34:081 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18054, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 17:37:34:815 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18057, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 17:37:34:820 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18058, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 17:37:34:823 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 17:37:34:938 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18059, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 17:37:34:941 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18060, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 17:37:34:944 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 18:07:10:632 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18182, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 18:07:11:152 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18185, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 18:07:11:157 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18186, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 18:07:11:163 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 18:07:11:275 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18187, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 18:07:11:278 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18188, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 18:07:11:279 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 19:52:39:399 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18701, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:52:39:507 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18702, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:52:39:512 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18703, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:52:39:512 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 19:52:40:349 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18706, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:52:40:354 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18707, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:52:40:473 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18708, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:52:40:476 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18709, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:52:40:478 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 19:56:58:123 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18731, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:56:58:650 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18734, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:56:58:656 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18735, ACTION=change, USB_STATE=DISCONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:56:58:657 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+      09-06 19:56:58:773 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18736, ACTION=change, USB_STATE=CONNECTED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:56:58:777 USB UEVENT: {SUBSYSTEM=android_usb, SEQNUM=18737, ACTION=change, USB_STATE=CONFIGURED, DEVPATH=/devices/virtual/android_usb/android0}
+      09-06 19:56:58:780 USB intent: Intent { act=android.hardware.usb.action.USB_STATE flg=0x31000000 (has extras) }
+    ]
+  }
+  host_manager={
+    num_connects=0
+  }
+  port_manager={
+    is_simulation_active=false
+    usb_ports={
+      port={
+        id=port0
+===USB_PROPS===
+[init.svc.usbd]: [stopped]
+[init.svc.vendor.usb-hal-1-3]: [running]
+[init.svc_debug_pid.usbd]: []
+[init.svc_debug_pid.vendor.usb-hal-1-3]: [800]
+[persist.sys.usb.config]: [adb]
+[ro.audio.usb.period_us]: [16000]
+[ro.boottime.usbd]: [8358651692]
+[ro.boottime.vendor.usb-hal-1-3]: [7526152077]
+[ro.recovery.usb.adb.pid]: [D001]
+[ro.recovery.usb.fastboot.pid]: [4EE0]
+[ro.recovery.usb.vid]: [18D1]
+[ro.sys.usb.bicr]: [no]
+[ro.sys.usb.charging.only]: [yes]
+[ro.sys.usb.mtp.whql.enable]: [0]
+[ro.sys.usb.storage.type]: [mtp]
+[sys.usb.config]: [adb]
+[sys.usb.configfs]: [1]
+[sys.usb.controller]: [musb-hdrc]
+[sys.usb.ffs.ready]: [1]
+[sys.usb.state]: [adb]
+[vendor.usb.acm_cnt]: [1]
+[vendor.usb.acm_enable]: [1]
+[vendor.usb.acm_port0]: [0]
+[vendor.usb.acm_port1]: []
+[vendor.usb.controller]: [musb-hdrc]
+[vendor.usb.ffs.ready]: [1]
+[vendor.usb.vid]: [0x04E8]
+===USB_CONTROLLER===
+musb-hdrc
+===UDC_LIST===
+musb-hdrc

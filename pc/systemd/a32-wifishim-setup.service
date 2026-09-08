@@ -1,0 +1,19 @@
+[Unit]
+Description=A32 Wi-Fi shim: interface setup (hwsim STA + monitor)
+Documentation=file:///usr/local/lib/a32wifishim/README.md
+After=NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Operator loads mac80211_hwsim externally (e.g. /etc/modules-load.d);
+# this unit never modprobes.
+Environment=SKIP_MODPROBE=1
+ExecStart=/usr/local/lib/a32wifishim/wifishim-setup.sh
+# Best-effort: bring up the USB link if the phone is already plugged in.
+# Fails silently when absent; the daemons below tolerate that.
+ExecStartPost=-/usr/bin/nmcli connection up a32static
+
+[Install]
+WantedBy=multi-user.target

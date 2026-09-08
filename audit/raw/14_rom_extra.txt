@@ -1,0 +1,73 @@
+===ROM_PROPS===
+[persist.log.tag.DSSelectorOm]: [S]
+[ro.boot.bromcmddisable]: [0x1]
+[ro.build.description]: [a32ub-user 13 TP1A.220624.014 A325MUBSBDXL1 release-keys]
+[ro.build.display.id]: [AP4A.250205.002]
+[ro.build.flavor]: [lineage_a32-user]
+[ro.lineage.build.version]: [22.1]
+[ro.lineage.device]: [a32]
+[ro.lineage.display.version]: [22-20250214-UNOFFICIAL-a32]
+[ro.lineage.releasetype]: [UNOFFICIAL]
+[ro.lineage.version]: [22.1-20250214-UNOFFICIAL-a32]
+[ro.lineagelegal.url]: [https://lineageos.org/legal]
+[ro.product.bootimage.name]: [lineage_a32]
+[ro.product.name]: [lineage_a32]
+[ro.product.odm.name]: [lineage_a32]
+[ro.product.product.name]: [lineage_a32]
+[ro.product.system_ext.name]: [lineage_a32]
+[ro.product.vendor.name]: [lineage_a32]
+[ro.product.vendor_dlkm.name]: [lineage_a32]
+[ro.vendor.build.date]: [Sat Feb 15 00:23:52 CST 2025]
+[ro.vendor.build.date.utc]: [1739550232]
+[ro.vendor.build.fingerprint]: [samsung/a32ub/a32:13/TP1A.220624.014/A325MUBSBDXL1:user/release-keys]
+[ro.vendor.build.id]: [AP4A.250205.002]
+[ro.vendor.build.security_patch]: [2025-01-01]
+[ro.vendor.build.tags]: [release-keys]
+[ro.vendor.build.type]: [user]
+[ro.vendor.build.version.incremental]: [1739550232]
+[ro.vendor.build.version.release]: [15]
+[ro.vendor.build.version.release_or_codename]: [15]
+[ro.vendor.build.version.sdk]: [35]
+[vendor.camera.aux.packagelist]: [org.lineageos.aperture,org.lineageos.aperture.dev]
+===INCREMENTAL===
+1739550232
+AP4A.250205.002
+a32ub-user 13 TP1A.220624.014 A325MUBSBDXL1 release-keys
+===ABI===
+arm64-v8a,armeabi-v7a,armeabi
+===MODULES_LOAD===
+bt_drv_connac1x
+wmt_drv
+connfem
+fmradio_drv_mt6631
+gps_drv
+wmt_chrdev_wifi
+wlan_drv_gen4m
+fpsgo
+met
+udc_lib
+===FW_DIR===
+BT_FW.cfg
+WIFI
+WIFI_RAM_CODE_soc1_0_1a_1.bin
+WMT_SOC.cfg
+dax_param.bin
+fm_cust.cfg
+gt1151_default_firmware2.img
+gt9886_cfg_6781v01.bin
+gt9886_cfg_6785v96.bin
+gt9886_cfg_6785v99.bin
+gt9886_cfg_6853v01.bin
+gt9886_cfg_6873v01.bin
+gt9886_cfg_6877v01.bin
+gt9886_cfg_6885v01.bin
+gt9886_cfg_6885v1.bin
+gt9886_cfg_6885v9c.bin
+gt9886_cfg_6893v01.bin
+gt9886_cfg_90hz6785.bin
+gt9886_cfg_90hz6877.bin
+gt9886_cfg_90hz6885.bin
+===WLAN_FW===
+ls: /vendor/firmware/gen4m: No such file or directory
+-rw-r--r-- 1 root root 196628 2008-12-31 19:00 /vendor/firmware/soc1_0_ram_wifi_1a_1_hdr.bin
+-rw-r--r-- 1 root root    225 2008-12-31 19:00 /vendor/firmware/wifi.cfg

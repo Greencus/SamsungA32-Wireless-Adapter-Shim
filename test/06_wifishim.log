@@ -1,0 +1,115 @@
+2026-09-07 STAGE 0 REDESIGN: same-phy EBUSY kills all TX.
+Daemon proved it: `iw dev mon1 set channel 6 -> EBUSY (-16)`, TX self-test
+0->0 STUCK, no-channel-line. Cause: mon1+wlan1 shared phy1; NM/wpa_supplicant
+pins the phy, every channel set dies, hwsim tunes nothing, driver drops all
+TX silently (socket-level success, tx_packets frozen). Same-phy sharing is
+unworkable for injection. New layout (setup v2): mon1 ALONE on first hwsim
+radio (free hopping), STA wlan1 (recreated) on second radio for NM, AP later
+joins STA's phy (same channel by construction). Daemon unchanged (discovers
+STA via /run/wifishim/sta_phy, mon by name). Also learned: ls-function breaks
+bare `ls` (use `command ls`); multiline python -c breaks on fish (use files).
+2026-09-07 STAGE 1 PROVEN: NM lists real phone-seen APs on wlan1, BOTH bands
+(Elizabeth2/SmartRG 2.4GHz + High5 5GHz/ch153, correct BSSIDs/security).
+Two lessons: (1) tx_packets NEVER counts monitor-injected TX on hwsim — the
+self-test STUCK verdict was a false alarm from a bogus oracle; socket errors
+are the only real failure signal (self-test reworded). (2) Single scans can
+miss APs (hop/dwell rendezvous is probabilistic); repeats converge. Uniform
+signal 84 on all entries = hwsim default for injected frames (cosmetic).
+Remaining: Stage 2 open-network E2E (hostapd AP + dnsmasq + phone connect).
+
+=== 2026-09-07 WPA2 "password incorrect" — three credential bugs fixed ===
+SYMPTOM: NM connects, EAPOL fails, "password incorrect" despite right password.
+(1) STALE SECRETS: serving key was UUID-only. NM saves the typed password
+    AFTER profile creation, so first detection often sees empty/stale PSK;
+    corrections never re-triggered bringup (hostapd kept the first secret
+    forever). Fix: key = uuid + sha256(ssid/keymgmt/psk)[:16]; any secret
+    change tears down + rebuilds hostapd.
+(2) PASSPHRASE MANGLE: wpa_passphrase= raw line breaks on '#' (comment char),
+    quotes, edge whitespace -> wrong PMK -> handshake fails. Fix: derive hex
+    PSK via PBKDF2-HMAC-SHA1 locally, write wpa_psk= (immune to all of it).
+(3) MISSING NEIGHBOR PIN (designed, never coded): unicast DHCP OFFERs to a
+    not-yet-owned address die in the neighbor queue (test/03 lesson). Fix:
+    ip neigh replace <first-pool> lladdr <STA MAC> nud permanent on bringup.
+ALSO: hostapd stdout/stderr now go to /run/wifishim/hostapd.log (was DEVNULL
+— EAPOL failures were undebuggable); list-first BSSID lookup (full scan only
+as fallback, saves ~15 s per activation); phone join attempts throttled to
+1/SSID/2min (each flaps the phone uplink — was unbounded per 3 s poll).
+
+=== 2026-09-07 orchestrator watched ap1 + hostapd reuse crash loop ===
+SYMPTOM: orchestrator logged "watching NM wifi on ap1"; connects did nothing;
+hostapd log spun "Match already configured" + AP-DISABLED forever.
+ROOT CAUSE 1: STA discovery skipped mon*/lo but not ap*. Directory order made
+it grab OUR OWN ap1 (same phy) instead of wlan1 — NM never activates there,
+so detections never fired. Fix: exclude ap* in BOTH daemons' discovery.
+ROOT CAUSE 2: ap1 reuse across bringups. First-ever hostapd run works; every
+reuse dies EINVAL ("already configured") because teardown never reset the
+iface type. Fix: bringup kills stale hostapd/dnsmasq (bracket-safe pkill),
+deletes + recreates ap1 fresh, spoofs MAC, then starts hostapd.
+ALSO: hostapd liveness gate via ctrl PONG before declaring serving (fail in
+the retry loop, never serve dead). Phone leg untouched.
+
+=== 2026-09-07 honesty guard: teardown on phone failure ===
+OBSERVED: wrong password typed -> local EAPOL "succeeds" (same key both ends,
+meaningless), real AP rejects phone -> user sees工作的假象 locally + auth
+error on phone. Worst outcome: fake success.
+FIX: phone_ensure records PHONE_OK[ssid]; main loop tears the AP side down on
+False (NM shows honest DOWN, retries start a fresh cycle; phone attempts stay
+throttled 1/SSID/2min). Suppression pins the exact failed config until it
+changes or NM leaves. Also fixed style-flagged literal comparison via
+membership form (del after acting, one-shot semantics).
+TEST GUIDANCE: validate with a KNOWN password (High5: phone already there, no
+uplink risk). Rapid clicking outruns 30 s phone joins; wait 60 s per attempt.
+
+=== 2026-09-07 dual-band flip-flop + saved-password staleness ===
+LOG PROOF: orchestrator served SmartRG as ch52/:67 (hostapd died instantly,
+DFS radar channel) then ch6/:66 seconds later — phone scan returns whichever
+BSS was heard last, and each rebuild flaps BSSID+channel mid-session.
+FIX: per-SSID pinning (keep serving the same BSS while visible), preference
+2.4 GHz > non-DFS 5 GHz > anything (loud WARN on DFS-only), RSSI tiebreak
+(rssi added to parse output). Pin releases when the BSS vanishes.
+SEPARATE ISSUE (user-side, not code): "saved password fails, fresh works" =
+the NM profile holds a STALE/WRONG secret (typed once wrong, saved forever).
+Fix from chair: delete the profile, retype carefully:
+  nmcli connection delete "SmartRG-377e 4"
+Serving-key content hash already rebuilds hostapd on secret change, and hex
+PSK is special-char immune, so a careful retype converges.
+
+=== 2026-09-07 band preference: 5 GHz default ===
+Operator prefers 5 GHz (cleaner spectrum; High5 ch153 does 180 Mbps).
+WIFISHIM_BAND_PREF env (5g default, 2.4 flips): non-DFS 5 first, then 2.4,
+DFS/odd always last (hostapd dies on DFS regardless of preference — e.g.
+SmartRG 5 GHz BSS on ch52 still correctly serves via 2.4 GHz ch6).
+Pins are in-memory: daemon restart picks up the new policy immediately.
+
+=== 2026-09-07 persistence + docs wrap (systemd, README, portability) ===
+- pc/systemd/: setup (oneshot, SKIP_MODPROBE=1, best-effort a32static up),
+  scan + conn (simple, Restart=always, journal logging, BAND_PREF env).
+  install.sh copies to /usr/local/lib/a32wifishim + enables. BT relay stays
+  manual by design (radio takeover must be explicit). Units verified via
+  systemd-analyze (only expected not-installed-yet notice).
+- README rewritten: full setup (phone/PC/shim/systemd), usage, diagnostics,
+  rollback (phone + PC shim + USB), and a portability section (generic PC
+  code/protocols/patterns vs per-device gadget/BT-backend/SELinux/props).
+- docs/arch-wifi-shim.md: layout/injection/orchestrator/DHCP/persistence.
+- Module zip unchanged (v0.2.5 current; only PC+docs changed since).
+- Leftover optionals (not blockers): reboot-survival test, iperf numbers,
+  WPA3-SAE-only/EAP/hidden/6GHz, live `install.sh` acceptance (user-run).
+
+=== 2026-09-07 installer owns modprobes (toggle kept) ===
+- install.sh now loads mac80211_hwsim (radios=2) + hci_vhci immediately and
+  persists via /etc/modules-load.d/a32wifishim.conf + /etc/modprobe.d/
+  a32wifishim.conf. SKIP_MODPROBE=1 restores fully-manual loading.
+- setup.service keeps SKIP_MODPROBE=1 (boot loading comes from modules-load.d
+  long before it runs); FATAL message now tells the exact recovery command.
+- README install + rollback sections updated (incl. removing the two new
+  /etc files on uninstall).
+
+=== 2026-09-07 ap1 hidden from NM applet ===
+USER REPORT: ap1 listed in NM as dead wifi entry; confusing.
+FACT: ap1 is hostapd's interface (the local fake AP the STA associates
+to) — required, cannot not-create. Fix is visibility, not existence:
+new pc/systemd/nm-a32wifishim.conf ([device] match mon1+ap1, managed=0)
+installed to /etc/NetworkManager/conf.d/ by install.sh (+ nmcli general
+reload, non-disruptive); orchestrator also calls nmcli device set ap1
+managed no per bringup for manual (non-installer) runs. ap1 keep-alive
+behavior unchanged (fast reuse across sessions).

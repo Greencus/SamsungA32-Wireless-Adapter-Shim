@@ -1,0 +1,128 @@
+===IPTABLES===
+Chain INPUT (policy ACCEPT 172K packets, 235M bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 172K  235M bw_INPUT   all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+ 172K  235M fw_INPUT   all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 oem_fwd    all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 fw_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 bw_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 tetherctrl_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT (policy ACCEPT 102K packets, 19M bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 102K   19M oem_out    all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+ 102K   19M fw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+ 102K   19M st_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+ 102K   19M bw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain bw_FORWARD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain bw_INPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+ 172K  235M bw_global_alert  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 RETURN     50   --  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            mark match 0x100000/0x100000
+ 172K  235M MARK       all  --  *      *       0.0.0.0/0            0.0.0.0/0            MARK or 0x100000
+
+Chain bw_OUTPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+ 102K   19M bw_global_alert  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain bw_costly_shared (0 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 bw_penalty_box  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain bw_data_saver (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain bw_global_alert (2 references)
+ pkts bytes target     prot opt in     out     source               destination         
+ 140K  153M            all  --  *      *       0.0.0.0/0            0.0.0.0/0            ! quota globalAlert: 2097152 bytes 
+
+Chain bw_happy_box (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           match bpf pinned /sys/fs/bpf/netd_shared/prog_netd_skfilter_allowlist_xtbpf
+    0     0 bw_data_saver  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain bw_penalty_box (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0           match bpf pinned /sys/fs/bpf/netd_shared/prog_netd_skfilter_denylist_xtbpf reject-with icmp-port-unreachable
+    0     0 bw_happy_box  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain fw_FORWARD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain fw_INPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+===IPTABLES_NAT===
+Chain PREROUTING (policy ACCEPT 20474 packets, 4633K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+20474 4633K oem_nat_pre  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT (policy ACCEPT 3790 packets, 753K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 1142 packets, 74638 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain POSTROUTING (policy ACCEPT 1142 packets, 74638 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 1142 74638 tetherctrl_nat_POSTROUTING  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain oem_nat_pre (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain tetherctrl_nat_POSTROUTING (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+===IPTABLES_MANGLE===
+Warning: Extension CONNMARK is not supported, missing kernel module?
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination         
+oem_mangle_pre  all  --  0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+connmark_mangle_INPUT  all  --  0.0.0.0/0            0.0.0.0/0           
+wakeupctrl_mangle_INPUT  all  --  0.0.0.0/0            0.0.0.0/0           
+routectrl_mangle_INPUT  all  --  0.0.0.0/0            0.0.0.0/0           
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+tetherctrl_mangle_FORWARD  all  --  0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+connmark_mangle_OUTPUT  all  --  0.0.0.0/0            0.0.0.0/0           
+
+Chain POSTROUTING (policy ACCEPT)
+===NFT===
+/system/bin/sh: nft: inaccessible or not found
+===NFT_IFACE===
+===EBTABLES===
+/system/bin/sh: ebtables: inaccessible or not found
+===IP6TABLES===
+Warning: Extension CONNMARK is not supported, missing kernel module?
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+bw_INPUT   all  --  ::/0                 ::/0                
+fw_INPUT   all  --  ::/0                 ::/0                
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+oem_fwd    all  --  ::/0                 ::/0                
+fw_FORWARD  all  --  ::/0                 ::/0                
+bw_FORWARD  all  --  ::/0                 ::/0                
+tetherctrl_FORWARD  all  --  ::/0                 ::/0                
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+oem_out    all  --  ::/0                 ::/0                
+fw_OUTPUT  all  --  ::/0                 ::/0                
+st_OUTPUT  all  --  ::/0                 ::/0                
+bw_OUTPUT  all  --  ::/0                 ::/0                
+

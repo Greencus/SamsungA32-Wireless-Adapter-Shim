@@ -1,0 +1,44 @@
+===ZYGISK===
+key=zygisk|value=0
+key=bootloop|value=0
+===DENYLIST===
+===MAGISK_PATH_FS===
+total 1264
+drwx--x--x  3 root root    200 2026-09-05 15:26 .
+drwxr-xr-x 30 root root   4096 2008-12-31 19:00 ..
+drwx--x--x  8 root root    200 2026-09-05 15:27 .magisk
+-rwxr-xr-x  1 root root 412448 2026-09-05 15:26 magisk
+-rwxr-xr-x  1 root root 260772 2026-09-05 15:26 magisk32
+-rwxr-x---  1 root root 224992 2026-09-05 15:26 magiskinit
+-rwxr-xr-x  1 root root 387376 2026-09-05 15:26 magiskpolicy
+lrwxrwxrwx  1 root root      8 2026-09-05 15:26 resetprop -> ./magisk
+lrwxrwxrwx  1 root root      8 2026-09-05 15:26 su -> ./magisk
+===RESETPROP===
+/debug_ramdisk/resetprop
+===SU_ACTUAL===
+-rwx------ 1 u0_a177 u0_a177 563 2025-08-27 17:34 /data/data/com.termux/files/usr/bin/su
+#!/data/data/com.termux/files/usr/bin/sh
+
+unset LD_LIBRARY_PATH LD_PRELOAD
+
+for p in /debug_ramdisk/su /sbin/su /system/sbin/su /system/bin/su /system/xbin/su /su/bin/su /magisk/.core/bin/su
+===SELINUX_MODE===
+131===KNOX===
+1
+1
+===ADB_WIFI===
+[persist.adb.wifi.guid]: [adb-R58R75KGLGV-mWcsyT]
+===DROPBEA_R_VER===
+/system/bin/sh: dropbear: inaccessible or not found
+/system/bin/sh: sshd: inaccessible or not found
+===TERMUX_PS===
+shell          889 adbd
+root           949 adb_root
+u0_a177       2226 sshd-session
+u0_a177       2228 sshd-session
+u0_a177      30447 com.termux
+u0_a177      30541 sshd
+u0_a177      31754 sshd-session
+u0_a177      31756 sshd-session
+u0_a177      32098 sshd-session
+u0_a177      32100 sshd-session

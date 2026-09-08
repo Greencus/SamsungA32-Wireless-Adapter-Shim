@@ -1,0 +1,171 @@
+===SYS_CLASS_BT===
+ls: /sys/class/bluetooth/: No such file or directory
+===HCI_DEV===
+ls: /sys/class/hci: No such file or directory
+===HCI_BRIDGE===
+===HCICONFIG===
+/system/bin/sh: hciconfig: inaccessible or not found
+===HCI_DEVICES===
+===BT_PROPS===
+[bluetooth.device.class_of_device]: [90,2,12]
+[bluetooth.hci.erroneous_data_reporting.enabled]: [false]
+[bluetooth.profile.a2dp.source.enabled]: [true]
+[bluetooth.profile.asha.central.enabled]: [false]
+[bluetooth.profile.avrcp.target.enabled]: [true]
+[bluetooth.profile.bap.broadcast.source.enabled]: [false]
+[bluetooth.profile.bas.client.enabled]: [true]
+[bluetooth.profile.gatt.enabled]: [true]
+[bluetooth.profile.hfp.ag.enabled]: [true]
+[bluetooth.profile.hid.device.enabled]: [true]
+[bluetooth.profile.hid.host.enabled]: [true]
+[bluetooth.profile.map.server.enabled]: [true]
+[bluetooth.profile.opp.enabled]: [true]
+[bluetooth.profile.pan.nap.enabled]: [true]
+[bluetooth.profile.pan.panu.enabled]: [true]
+[bluetooth.profile.pbap.server.enabled]: [true]
+[bluetooth.profile.sap.server.enabled]: [true]
+[cache_key.bluetooth.bluetooth_adapter_get_connection_state]: [-2879572731362848826]
+[cache_key.bluetooth.bluetooth_adapter_get_profile_connection_state]: [-2879572731362848825]
+[cache_key.bluetooth.bluetooth_adapter_get_state]: [-2879572731362848824]
+[cache_key.bluetooth.bluetooth_adapter_is_offloaded_filtering_supported]: [-2879572731362848833]
+[cache_key.bluetooth.bluetooth_device_get_bond_state]: [-2879572731362848831]
+[cache_key.bluetooth.bluetooth_map_get_connection_state]: [-2879572731362848828]
+[cache_key.bluetooth.bluetooth_sap_get_connection_state]: [-2879572731362848827]
+[init.svc.bluetooth-1-1]: [running]
+[init.svc_debug_pid.bluetooth-1-1]: [786]
+[net.bt.name]: [Android]
+[persist.bluetooth.bqr.event_mask]: [0]
+[persist.bluetooth.bqr.min_interval_ms]: [0]
+[persist.bluetooth.btsnoopdefaultmode]: [disabled]
+[ro.boottime.bluetooth-1-1]: [7481306769]
+[ro.vendor.bt.platform]: [connac1x]
+[ro.vendor.connsys.dedicated.log.port]: [bt,wifi,gps,mcu]
+[ro.vendor.mtk.bt_sap_enable]: [true]
+[vendor.bluetooth_fw_ver]: [t-neptune-mp-soc1_0e1-1950-tc10sp-TALBOT_SOC1_0_E1_ASIC-20240904095302]
+[vendor.bluetooth_nv_ver]: [/vendor/firmware//soc1_0_ram_bt_1a_1_hdr.bin]
+[vendor.thermal.bt_completed]: [1]
+===DUMPSYS_BT===
+Bluetooth Status
+  enabled: true
+  state: ON
+  address: XX:XX:XX:XX:00:01
+  name: A32 Server
+  time since enabled: 29:15:58.227
+
+Enable log:
+  09-05 15:26:58.087 	Package [android] requested to [Enable]. 	Reason is SYSTEM_BOOT
+
+Bluetooth crashed 0 times
+
+Number of Ble app registered: 0
+
+BluetoothManagerService:
+  mEnable:true
+  mQuietEnable:false
+  mEnableExternal:true
+  mQuietEnableExternal:false
+
+🚩Flag dump:
+	[■]: a2dp_aidl_encoding_interval
+	[■]: a2dp_async_allow_low_latency
+	[ ]: a2dp_broadcast_connection_state_when_turned_off
+	[■]: a2dp_check_lea_iso_channel
+	[■]: a2dp_fix_codec_type_in_java
+	[ ]: a2dp_ignore_started_when_responder
+	[■]: a2dp_service_looper
+	[ ]: a2dp_variable_aac_capability
+	[ ]: abs_volume_sdp_conflict
+	[■]: adm_always_fallback_to_available_device
+	[■]: adm_fallback_when_wired_audio_disconnected
+	[■]: allow_switching_hid_and_hogp
+	[■]: android_headtracker_service
+	[■]: android_os_identifier
+	[■]: api_get_connection_state_using_identity_address
+	[■]: asha_encrypted_l2c_coc
+	[■]: asymmetric_phy_for_unidirectional_cis
+	[■]: audio_port_binder_inherit_rt
+	[ ]: audio_routing_centralization
+	[ ]: auto_connect_on_multiple_hfp_when_no_a2dp_device
+	[ ]: av_stream_reconfigure_fix
+	[■]: avdt_discover_seps_as_acceptor
+	[ ]: avdt_prioritize_mandatory_codec
+	[■]: avdtp_error_codes
+	[■]: avoid_static_loading_of_native
+	[■]: avrcp_connect_a2dp_with_delay
+	[■]: avrcp_sdp_records
+	[■]: ble_check_data_length_on_legacy_advertising
+	[■]: ble_context_map_remove_fix
+	[■]: ble_gatt_server_use_address_type_in_connection
+	[■]: ble_scan_adv_metrics_redesign
+	[ ]: bluetooth_power_telemetry
+	[■]: bond_transport_after_bond_cancel_fix
+	[■]: break_uhid_polling_early
+	[ ]: browsing_refactor
+	[ ]: bt_socket_api_l2cap_cid
+	[■]: bt_system_context_report
+	[ ]: bta_ag_cmd_brsf_allow_uint32
+	[ ]: bta_av_setconfig_rej_type_confusion
+	[ ]: bta_av_use_peer_codec
+	[ ]: bta_dm_defer_device_discovery_state_change_until_rnr_complete
+	[■]: bta_dm_discover_both
+	[■]: btsec_check_valid_discovery_database
+	[■]: cancel_open_discovery_client
+	[■]: cancel_pairing_only_on_disconnected_transport
+	[■]: channel_sounding
+	[ ]: channel_sounding_in_stack
+	[■]: choose_wrong_hfp_codec_in_specific_config
+	[■]: cleanup_le_only_device_type
+	[ ]: clear_auth_collision_state_on_pairing_complete
+	[ ]: clear_pairing_state_when_no_devrec
+	[ ]: close_hid_if_uhid_ready_too_slow
+	[■]: close_hid_only_if_connected
+	[■]: device_iot_config_logging
+	[ ]: donot_push_error_code_to_app_when_connected
+	[ ]: donot_queue_dup_rnr
+	[ ]: donot_validate_bond_state_from_profiles
+	[ ]: enable_hap_by_default
+	[ ]: encrypted_advertising_data
+	[ ]: encryption_change_v2
+	[ ]: enforce_resolve_system_service_behavior
+	[■]: enumerate_gatt_errors
+	[■]: fast_bind_to_app
+	[ ]: fix_avdt_rconfig_not_setting_l2cap
+	[ ]: fix_hfp_qual19
+	[■]: fix_le_evt_cancelling_sdp_discovery
+	[■]: fix_nonconnectable_scannable_advertisement
+	[ ]: fix_sco_command_status_handling
+	[ ]: floss_separate_host_privacy_and_llprivacy
+	[ ]: gatt_callback_on_failure
+	[■]: gatt_cleanup_restricted_handles
+	[ ]: gatt_client_dynamic_allocation
+	[ ]: gatt_disconnect_fix
+	[■]: gatt_fix_device_busy
+	[■]: gatt_fix_multiple_direct_connect
+	[■]: gatt_rediscover_on_canceled
+	[ ]: gatt_server_requests_fix
+	[ ]: get_all_element_attributes_empty
+	[ ]: get_name_and_address_as_callback
+	[ ]: get_state_from_system_server
+	[ ]: guest_mode_bond
+	[ ]: handle_delivery_sending_failure_events
+	[■]: headset_client_am_hf_volume_symmetric
+	[■]: headtracker_codec_capability
+	[■]: headtracker_sdu_size
+	[ ]: hfp_allow_volume_change_without_sco
+	[ ]: hfp_client_disconnecting_state
+	[ ]: hfp_software_datapath
+	[■]: hid_report_queuing
+	[■]: identity_address_null_if_not_known
+	[ ]: ignore_notify_when_already_connected
+	[ ]: improve_create_connection_for_already_connecting_device
+	[■]: initiate_multiple_hid_connections
+	[ ]: is_sco_managed_by_audio
+	[ ]: key_missing_as_ordered_broadcast
+	[■]: key_missing_broadcast
+	[ ]: key_missing_classic_device
+	[ ]: kill_instead_of_exit
+	[ ]: l2cap_le_do_not_adjust_min_interval
+===BT_DRIVER_SYSFS===
+mtk-btcvsd-snd
+mtk_btif
+ls: /sys/bus/serial/devices: No such file or directory

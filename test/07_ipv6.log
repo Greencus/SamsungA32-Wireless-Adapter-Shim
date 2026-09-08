@@ -1,0 +1,57 @@
+=== 2026-09-07 IPv6 routed design (dormant until upstream GUA) ===
+FINDINGS: phone dnsmasq 2.51 is v4-ONLY (101-line help, zero v6/RA symbols)
+-> no dnsmasq RA/DHCPv6 possible. Upstream High5 offers NO global v6
+(wlan0 link-local only); SmartRG earlier showed GUA 2604:... + ULA.
+DESIGN (no NAT, mirrors v4): same-LAN /64 model. a32radvd.py (new, stdlib
+only, --selftest proves framing+checksum+fields offline) multicasts RA
+(PIO L+A, MTU, SLLAO, router lifetime tied to upstream-default presence)
++ answers RS. a32routerd route6_ensure per tick: detect first GUA /64,
+table 100 v6 (LAN connected + default copied from upstream + NO main-table
+dependence — v6 has the same 32000-unreachable bypass), rules 5000/5001
+(verified free in v6 namespace), ip6tables a32fwd6 (interface-pair, stable
+across prefix changes), proxy_ndp switch + per-address proxy sweep with
+stale cleanup, radvd lifecycle via pidfile (+cmdline-verified adoption),
+transitions logged, loss-of-prefix tears everything down.
+PC: SLAAC stable-EUI64 (addr-gen-mode eui64, tempaddr off), metric-700
+default, v4 DNS covers AAAA too (no RDNSS needed). No RDNSS/DHCPv6 by
+design (unavailable server-side, unnecessary client-side).
+VERIFIED DORMANT on High5: status up, v4 ping OK, no v6 rules/table/proxy/
+radvd/prefix-file; PC profile set, no v6 addr (link-local only).
+NOT YET PROVEN E2E (needs upstream GUA = SmartRG window).
+
+=== 2026-09-07 E2E verdict: LAN-grade v6 PROVEN, internet gated upstream ===
+PHONE->PC echo: 2/2 replies 0.7 ms (type 129 matched). Full path proven:
+to-rule -> table 100 -> /128 dev rndis0 -> ND -> PC answers -> back.
+ROOT-CAUSE LOG (each cost a wrong turn):
+- `ip route show` OMITS /128 suffix on host routes (v6) and /32 (v4). Grep
+  for "^addr " (bare + trailing space), never "^addr/128". Caused phantom
+  "missing route" + WARN spam; route was present all along.
+- Kernel neigh table does NOT reliably show the PC's global (multicast ND
+  visibility). Discovery = deterministic EUI-64 from the pinned v4 neighbor
+  MAC + sweep supplement (tempaddr/manual extras).
+- stpbt-style lesson repeated: tcpdump-to-file must outlive `timeout`
+  (read AFTER expiry) or the capture reads empty.
+- Link-local cross-link ping is UNFIXABLE by design (fe80::/64 ambiguous
+  across links; policy routing sends replies out wlan0 per wlan0_local).
+  Always test globals; document, don't chase.
+- PC->global blocked LOCALLY: ProtonVPN IPv6 leak protection REJECTs all
+  outbound global v6 (instant port-unreachable from own stack; LL exempt
+  which is why v4+LL behaved differently). Needs operator VPN action.
+- Upstream SmartRG advertises GUA /64 but NO default route (kernel ground
+  truth: only dummy0 default anywhere) -> no v6 transit for anyone,
+  including the phone itself. Needs router/ISP side.
+FINAL MATRIX: RA->SLAAC, proxy, /128, rules, table, forwarding, firewall,
+dormant mode, transitions, uninstall coverage: all proven live. PC->phone
+and internet-v6: externally gated (VPN / upstream), mechanisms ready.
+
+=== 2026-09-07 zone verdict + ghost false alarm ===
+USER REPORT: internet dies when a32static moved to public zone.
+FINDING: zone innocent. Journal proves activation SUCCEEDED with the changed
+zone (all states to `activated`), then user disconnected manually twice;
+autoconnect=no kept it down. Reactivated -> fully working. Zones don't filter
+outbound; public and a32phone behave identically for this use.
+FALSE ALARM (own goal): `pgrep -f a32radvd` matched the querying shell itself
+-> reported a ghost that never existed. Bracket-pattern discipline applies to
+READ checks too, not just kills. Verified clean via bracket-safe scan.
+Hardening kept anyway: radvd_stop pattern-kills + dormant branch always
+stops (cheap orphan insurance).

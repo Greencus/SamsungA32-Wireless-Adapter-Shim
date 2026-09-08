@@ -1,0 +1,13 @@
+=== 2026-09-07 PC WiFi control proven over USB (goal 3, read path) ===
+- a32ctl.py status -> full ClientModeManager dump (High5, 192.168.1.3). OK.
+- a32ctl.py networks -> saved networks table. OK.
+- BUG: scan/list returned header-only. Root cause: shim wifi_list() kept only
+  lines containing SSID/BSSID/comma; this ROM's list-scan-results is
+  whitespace-separated with no commas, so every real result was dropped and
+  only the header survived. Fix: skip header (startswith BSSID), keep all
+  other non-empty lines. Verified: list + fresh scan return real networks.
+- connect/forget/enable implemented 1:1 over tested `cmd wifi` subcommands
+  but NOT executed live (would drop the operator's active uplink). Documented
+  for controlled test with maintenance window.
+- Note: restarting the shim drops any active BT relay session (radio returns
+  to Android by design); coordinate BT tests around shim restarts.

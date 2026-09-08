@@ -1,0 +1,34 @@
+#!/system/bin/sh
+# a32diag — diagnostic dump for a32router. Run as root:  su -c a32diag
+MODDIR=${0%/*}
+[ -f "$MODDIR/a32router.conf" ] && . "$MODDIR/a32router.conf"
+G=/config/usb_gadget/g1
+echo "=== a32router diag ==="
+echo "--- module ---"
+echo "moddir=$MODDIR version=$(grep '^version=' "$MODDIR/module.prop" 2>/dev/null)"
+echo "daemon=$(pgrep -f a32routerd 2>/dev/null | tr '\n' ' ')"
+cat "$MODDIR/state/status" 2>/dev/null || echo "status: (no state yet)"
+echo "--- USB gadget ---"
+echo "UDC=$(cat $G/UDC 2>/dev/null) usb_state=$(getprop sys.usb.state) usb_config=$(getprop sys.usb.config)"
+ls -l "$G/configs/b.1/" 2>/dev/null | grep -e '^l'
+echo "--- USB net ---"
+UIF=$(cat "$MODDIR/state/usb_if" 2>/dev/null)
+echo "usb_if=${UIF:-(none)}"
+[ -n "$UIF" ] && ip addr show "$UIF" 2>/dev/null
+echo "--- Wi-Fi upstream ---"
+WIF=$(cat "$MODDIR/state/upstream" 2>/dev/null)
+echo "wifi=${WIF:-(none)}"
+[ -n "$WIF" ] && [ "$WIF" != "down" ] && ip addr show "$WIF" 2>/dev/null | grep -e 'inet '
+echo "--- routes (main) ---"
+ip route show table main 2>/dev/null
+echo "--- forwarding ---"
+echo "ip_forward=$(cat /proc/sys/net/ipv4/ip_forward 2>/dev/null)"
+echo "--- firewall (module chain) ---"
+iptables -S a32fwd 2>/dev/null || echo "(no a32fwd chain)"
+echo "--- NAT refs to USB subnet ---"
+iptables -t nat -S 2>/dev/null | grep -e "${USB_SUBNET:-192.168.50}" || echo "(none — good)"
+echo "--- Bluetooth/HCI ---"
+echo "bt_service=$(getprop init.svc.bluetooth-1-1) bt_export=${BT_EXPORT:-0}"
+ls -l /dev/stpbt 2>/dev/null; ls /sys/class/bluetooth 2>/dev/null || echo "(no kernel BT class — expected)"
+echo "--- recent log ---"
+tail -n 20 "$MODDIR/a32router.log" 2>/dev/null

@@ -1,0 +1,517 @@
+===INIT_SVC===
+[init.svc.aconfigd]: [stopped]
+[init.svc.aconfigd-mainline-init]: [stopped]
+[init.svc.aconfigd-platform-init]: [stopped]
+[init.svc.adb_root]: [running]
+[init.svc.adbd]: [running]
+[init.svc.agpsd]: [running]
+[init.svc.android-hardware-media-c2-hal-1-2]: [running]
+[init.svc.apexd]: [stopped]
+[init.svc.apexd-bootstrap]: [stopped]
+[init.svc.apexd-snapshotde]: [stopped]
+[init.svc.art_boot]: [stopped]
+[init.svc.artd]: [stopped]
+[init.svc.audioserver]: [running]
+[init.svc.bluetooth-1-1]: [running]
+[init.svc.bootanim]: [stopped]
+[init.svc.boringssl_self_test32]: [stopped]
+[init.svc.boringssl_self_test32_vendor]: [stopped]
+[init.svc.boringssl_self_test64]: [stopped]
+[init.svc.boringssl_self_test64_vendor]: [stopped]
+[init.svc.boringssl_self_test_apex32]: [stopped]
+[init.svc.boringssl_self_test_apex64]: [stopped]
+[init.svc.bpfloader]: [stopped]
+[init.svc.cameraserver]: [running]
+[init.svc.ccci3_mdinit]: [stopped]
+[init.svc.ccci_mdinit]: [running]
+[init.svc.console]: [stopped]
+[init.svc.credstore]: [running]
+[init.svc.derive_classpath]: [stopped]
+[init.svc.derive_sdk]: [stopped]
+[init.svc.dmesgd]: [stopped]
+[init.svc.drm]: [running]
+[init.svc.gatekeeperd]: [running]
+[init.svc.gpu]: [running]
+[init.svc.health-hal-2-1]: [running]
+[init.svc.heapprofd]: [stopped]
+[init.svc.hidl_memory]: [running]
+[init.svc.hwservicemanager]: [running]
+[init.svc.idmap2d]: [stopped]
+[init.svc.incidentd]: [running]
+[init.svc.installd]: [running]
+[init.svc.ipsec_mon]: [running]
+[init.svc.keystore2]: [running]
+[init.svc.lmkd]: [running]
+[init.svc.logd]: [running]
+[init.svc.logd-auditctl]: [stopped]
+[init.svc.logd-reinit]: [stopped]
+[init.svc.macloader]: [stopped]
+[init.svc.media]: [running]
+[init.svc.media.swcodec]: [running]
+[init.svc.mediadrm]: [running]
+[init.svc.mediaextractor]: [running]
+[init.svc.mediametrics]: [running]
+[init.svc.meta_tst]: [running]
+[init.svc.misctrl]: [stopped]
+[init.svc.mnld]: [running]
+[init.svc.netd]: [running]
+[init.svc.netdagent]: [running]
+[init.svc.network_config]: [stopped]
+[init.svc.neuralnetworks_hal_service_mtk_neuron]: [running]
+[init.svc.nfc_hal_service]: [running]
+[init.svc.nvram-hidl-1-1]: [running]
+[init.svc.nvram_daemon]: [stopped]
+[init.svc.nwk_opt-hal-1-0]: [running]
+[init.svc.odsign]: [stopped]
+[init.svc.perfetto_persistent_sysui_tracing_for_bugreport]: [stopped]
+[init.svc.power-hal-1-2]: [running]
+[init.svc.prng_seeder]: [running]
+[init.svc.ril-daemon]: [running]
+[init.svc.samsung-software-media-c2-hal-1-0]: [running]
+[init.svc.sec-camera-provider-4-0]: [running]
+[init.svc.sec-miscpower-2-0]: [running]
+[init.svc.sec-sysinput-1-3]: [running]
+[init.svc.sec-thermal-1-0]: [running]
+[init.svc.sec_gnss_service]: [running]
+[init.svc.servicemanager]: [running]
+[init.svc.sim_config]: [stopped]
+[init.svc.snap_utility_64]: [stopped]
+[init.svc.statsd]: [stopped]
+[init.svc.storaged]: [running]
+[init.svc.surfaceflinger]: [running]
+[init.svc.system_suspend]: [running]
+[init.svc.thermal_manager]: [stopped]
+[init.svc.tombstoned]: [running]
+[init.svc.traced]: [running]
+[init.svc.traced_perf]: [stopped]
+[init.svc.traced_probes]: [running]
+[init.svc.tz_service]: [running]
+[init.svc.tzts_service]: [running]
+[init.svc.ueventd]: [running]
+[init.svc.usbd]: [stopped]
+[init.svc.vendor.audio-hal]: [running]
+[init.svc.vendor.ccci_rpcd]: [running]
+[init.svc.vendor.drm-clearkey-service]: [running]
+[init.svc.vendor.drm-widevine-hal-1-4]: [running]
+[init.svc.vendor.fps_hal]: [running]
+[init.svc.vendor.gatekeeper-1-0]: [running]
+[init.svc.vendor.gralloc-4-0]: [running]
+[init.svc.vendor.hwcomposer-2-1]: [running]
+[init.svc.vendor.keymaster-4-0]: [running]
+[init.svc.vendor.light-default]: [running]
+[init.svc.vendor.media.omx]: [running]
+[init.svc.vendor.memtrack-default]: [running]
+[init.svc.vendor.power-hal-aidl]: [running]
+[init.svc.vendor.samsung.hardware.hyper-default]: [running]
+[init.svc.vendor.sensors-hal-multihal]: [running]
+[init.svc.vendor.usb-hal-1-3]: [running]
+[init.svc.vendor.vibrator-default]: [running]
+[init.svc.vendor.wifi_hal_legacy]: [running]
+[init.svc.vndservicemanager]: [running]
+[init.svc.vold]: [running]
+[init.svc.vpud]: [running]
+[init.svc.wificond]: [running]
+[init.svc.wlan_assistant]: [running]
+[init.svc.wmt_launcher]: [running]
+[init.svc.wmt_loader]: [stopped]
+[init.svc.wpa_supplicant]: [running]
+[init.svc.zygote]: [running]
+[init.svc.zygote_secondary]: [running]
+[init.svc_debug_pid.aconfigd]: []
+[init.svc_debug_pid.aconfigd-mainline-init]: []
+[init.svc_debug_pid.aconfigd-platform-init]: []
+[init.svc_debug_pid.adb_root]: [949]
+[init.svc_debug_pid.adbd]: [889]
+[init.svc_debug_pid.agpsd]: [955]
+[init.svc_debug_pid.android-hardware-media-c2-hal-1-2]: [2090]
+[init.svc_debug_pid.apexd]: []
+[init.svc_debug_pid.apexd-bootstrap]: []
+[init.svc_debug_pid.apexd-snapshotde]: []
+[init.svc_debug_pid.art_boot]: []
+[init.svc_debug_pid.artd]: []
+[init.svc_debug_pid.audioserver]: [818]
+[init.svc_debug_pid.bluetooth-1-1]: [786]
+[init.svc_debug_pid.bootanim]: []
+[init.svc_debug_pid.boringssl_self_test32]: []
+[init.svc_debug_pid.boringssl_self_test32_vendor]: []
+[init.svc_debug_pid.boringssl_self_test64]: []
+[init.svc_debug_pid.boringssl_self_test64_vendor]: []
+[init.svc_debug_pid.boringssl_self_test_apex32]: []
+[init.svc_debug_pid.boringssl_self_test_apex64]: []
+[init.svc_debug_pid.bpfloader]: []
+[init.svc_debug_pid.cameraserver]: [925]
+[init.svc_debug_pid.ccci3_mdinit]: []
+[init.svc_debug_pid.ccci_mdinit]: [824]
+[init.svc_debug_pid.console]: []
+[init.svc_debug_pid.credstore]: [819]
+[init.svc_debug_pid.derive_classpath]: []
+[init.svc_debug_pid.derive_sdk]: []
+[init.svc_debug_pid.dmesgd]: []
+[init.svc_debug_pid.drm]: [910]
+[init.svc_debug_pid.gatekeeperd]: [968]
+[init.svc_debug_pid.gpu]: [820]
+[init.svc_debug_pid.health-hal-2-1]: [792]
+[init.svc_debug_pid.heapprofd]: []
+[init.svc_debug_pid.hidl_memory]: [784]
+[init.svc_debug_pid.hwservicemanager]: [462]
+[init.svc_debug_pid.idmap2d]: []
+[init.svc_debug_pid.incidentd]: [927]
+[init.svc_debug_pid.installd]: [928]
+[init.svc_debug_pid.ipsec_mon]: [958]
+[init.svc_debug_pid.keystore2]: [531]
+[init.svc_debug_pid.lmkd]: [460]
+[init.svc_debug_pid.logd]: [459]
+[init.svc_debug_pid.logd-auditctl]: []
+[init.svc_debug_pid.logd-reinit]: []
+[init.svc_debug_pid.macloader]: []
+[init.svc_debug_pid.media]: [937]
+[init.svc_debug_pid.media.swcodec]: [965]
+[init.svc_debug_pid.mediaextractor]: [929]
+[init.svc_debug_pid.mediametrics]: [936]
+[init.svc_debug_pid.meta_tst]: [2087]
+[init.svc_debug_pid.misctrl]: []
+[init.svc_debug_pid.mnld]: [954]
+[init.svc_debug_pid.netd]: [774]
+[init.svc_debug_pid.netdagent]: [972]
+[init.svc_debug_pid.network_config]: []
+[init.svc_debug_pid.neuralnetworks_hal_service_mtk_neuron]: [921]
+[init.svc_debug_pid.nfc_hal_service]: [2601]
+[init.svc_debug_pid.nvram-hidl-1-1]: [808]
+[init.svc_debug_pid.nvram_daemon]: []
+[init.svc_debug_pid.nwk_opt-hal-1-0]: [809]
+[init.svc_debug_pid.odsign]: []
+[init.svc_debug_pid.perfetto_persistent_sysui_tracing_for_bugreport]: []
+[init.svc_debug_pid.power-hal-1-2]: [807]
+[init.svc_debug_pid.prng_seeder]: [447]
+[init.svc_debug_pid.ril-daemon]: [963]
+[init.svc_debug_pid.samsung-software-media-c2-hal-1-0]: [806]
+[init.svc_debug_pid.sec-camera-provider-4-0]: [810]
+[init.svc_debug_pid.sec-miscpower-2-0]: [811]
+[init.svc_debug_pid.sec-sysinput-1-3]: [812]
+[init.svc_debug_pid.sec-thermal-1-0]: [814]
+[init.svc_debug_pid.sec_gnss_service]: [962]
+[init.svc_debug_pid.servicemanager]: [461]
+[init.svc_debug_pid.sim_config]: []
+[init.svc_debug_pid.snap_utility_64]: []
+[init.svc_debug_pid.statsd]: []
+[init.svc_debug_pid.storaged]: [942]
+[init.svc_debug_pid.surfaceflinger]: [822]
+[init.svc_debug_pid.system_suspend]: [530]
+[init.svc_debug_pid.thermal_manager]: []
+[init.svc_debug_pid.tombstoned]: [571]
+[init.svc_debug_pid.traced]: [920]
+[init.svc_debug_pid.traced_perf]: []
+[init.svc_debug_pid.traced_probes]: [914]
+[init.svc_debug_pid.tz_service]: [507]
+[init.svc_debug_pid.tzts_service]: [510]
+[init.svc_debug_pid.ueventd]: [394]
+[init.svc_debug_pid.usbd]: []
+[init.svc_debug_pid.vendor.audio-hal]: [785]
+[init.svc_debug_pid.vendor.ccci_rpcd]: [828]
+[init.svc_debug_pid.vendor.drm-clearkey-service]: [787]
+[init.svc_debug_pid.vendor.drm-widevine-hal-1-4]: [788]
+[init.svc_debug_pid.vendor.fps_hal]: [971]
+[init.svc_debug_pid.vendor.gatekeeper-1-0]: [789]
+[init.svc_debug_pid.vendor.gralloc-4-0]: [790]
+[init.svc_debug_pid.vendor.hwcomposer-2-1]: [791]
+[init.svc_debug_pid.vendor.keymaster-4-0]: [536]
+[init.svc_debug_pid.vendor.light-default]: [793]
+[init.svc_debug_pid.vendor.media.omx]: [953]
+[init.svc_debug_pid.vendor.memtrack-default]: [805]
+[init.svc_debug_pid.vendor.power-hal-aidl]: [561]
+[init.svc_debug_pid.vendor.samsung.hardware.hyper-default]: [804]
+[init.svc_debug_pid.vendor.sensors-hal-multihal]: [795]
+[init.svc_debug_pid.vendor.usb-hal-1-3]: [800]
+[init.svc_debug_pid.vendor.vibrator-default]: [802]
+[init.svc_debug_pid.vendor.wifi_hal_legacy]: [803]
+[init.svc_debug_pid.vndservicemanager]: [463]
+[init.svc_debug_pid.vold]: [473]
+[init.svc_debug_pid.vpud]: [964]
+[init.svc_debug_pid.wificond]: [944]
+[init.svc_debug_pid.wlan_assistant]: [924]
+[init.svc_debug_pid.wmt_launcher]: [529]
+[init.svc_debug_pid.wmt_loader]: []
+[init.svc_debug_pid.wpa_supplicant]: [1470]
+[init.svc_debug_pid.zygote]: [776]
+[init.svc_debug_pid.zygote_secondary]: [777]
+===BOOTANIM===
+[init.svc.bootanim]: [stopped]
+[init.svc_debug_pid.bootanim]: []
+[persist.sys.boot.reason]: []
+[persist.sys.boot.reason.history]: [cold,powerkey,1788636408
+[ro.boottime.bootanim]: [9102455077]
+[service.bootanim.exit]: [1]
+[service.bootanim.progress]: [0]
+[sys.boot.reason]: [cold,powerkey]
+[sys.boot.reason.last]: [shutdown,battery]
+[sys.boot_completed]: [1]
+[sys.bootstat.first_boot_completed]: [1]
+===VM===
+60
+===MOUNTS_CFGFS===
+none /sys/fs/fuse/connections fusectl rw,relatime 0 0
+pstore /sys/fs/pstore pstore rw,seclabel,nosuid,nodev,noexec,relatime 0 0
+/dev/fuse /mnt/installer/0/emulated fuse rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other 0 0
+/dev/fuse /mnt/androidwritable/0/emulated fuse rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other 0 0
+/dev/fuse /mnt/user/0/emulated fuse rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other 0 0
+none /config configfs rw,nosuid,nodev,noexec,relatime 0 0
+/dev/fuse /storage/emulated fuse rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other 0 0
+===PROC_MOUNTS===
+/dev/block/dm-0 / ext4 ro,seclabel,relatime 0 0
+tmpfs /dev tmpfs rw,seclabel,nosuid,relatime,size=1762488k,nr_inodes=440622,mode=755 0 0
+devpts /dev/pts devpts rw,seclabel,relatime,mode=600,ptmxmode=000 0 0
+none /dev/cpuctl cgroup rw,nosuid,nodev,noexec,relatime,cpu 0 0
+none /dev/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset,noprefix,release_agent=/sbin/cpuset_release_agent 0 0
+none /dev/memcg cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0
+none /dev/stune cgroup rw,nosuid,nodev,noexec,relatime,schedtune 0 0
+binder /dev/binderfs binder rw,relatime,max=1048576,stats=global 0 0
+adb /dev/usb-ffs/adb functionfs rw,relatime 0 0
+mtp /dev/usb-ffs/mtp functionfs rw,relatime 0 0
+ptp /dev/usb-ffs/ptp functionfs rw,relatime 0 0
+proc /proc proc rw,relatime,gid=3009,hidepid=2 0 0
+sysfs /sys sysfs rw,seclabel,relatime 0 0
+selinuxfs /sys/fs/selinux selinuxfs rw,relatime 0 0
+none /sys/fs/cgroup cgroup2 rw,nosuid,nodev,noexec,relatime 0 0
+tracefs /sys/kernel/tracing tracefs rw,seclabel,relatime,gid=3012 0 0
+none /sys/fs/fuse/connections fusectl rw,relatime 0 0
+bpf /sys/fs/bpf bpf rw,nosuid,nodev,noexec,relatime 0 0
+pstore /sys/fs/pstore pstore rw,seclabel,nosuid,nodev,noexec,relatime 0 0
+tmpfs /mnt tmpfs rw,seclabel,nosuid,nodev,noexec,relatime,size=1762488k,nr_inodes=440622,mode=755,gid=1000 0 0
+tmpfs /mnt/installer tmpfs rw,seclabel,nosuid,nodev,noexec,relatime,size=1762488k,nr_inodes=440622,mode=755,gid=1000 0 0
+/dev/fuse /mnt/installer/0/emulated fuse rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other 0 0
+/dev/block/dm-38 /mnt/installer/0/emulated/0/Android/data f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,reserve_root=32768,resuid=0,resgid=5678,usrquota,grpquota,inlinecrypt,alloc_mode=default,fsync_mode=nobarrier,compress_algorithm=lz4,compress_log_size=2 0 0
+/dev/block/dm-38 /mnt/installer/0/emulated/0/Android/obb f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,reserve_root=32768,resuid=0,resgid=5678,usrquota,grpquota,inlinecrypt,alloc_mode=default,fsync_mode=nobarrier,compress_algorithm=lz4,compress_log_size=2 0 0
+tmpfs /mnt/androidwritable tmpfs rw,seclabel,nosuid,nodev,noexec,relatime,size=1762488k,nr_inodes=440622,mode=755,gid=1000 0 0
+/dev/fuse /mnt/androidwritable/0/emulated fuse rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other 0 0
+/dev/block/dm-38 /mnt/androidwritable/0/emulated/0/Android/data f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,reserve_root=32768,resuid=0,resgid=5678,usrquota,grpquota,inlinecrypt,alloc_mode=default,fsync_mode=nobarrier,compress_algorithm=lz4,compress_log_size=2 0 0
+/dev/block/dm-38 /mnt/androidwritable/0/emulated/0/Android/obb f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,reserve_root=32768,resuid=0,resgid=5678,usrquota,grpquota,inlinecrypt,alloc_mode=default,fsync_mode=nobarrier,compress_algorithm=lz4,compress_log_size=2 0 0
+tmpfs /mnt/vm tmpfs rw,seclabel,nosuid,nodev,noexec,relatime,size=1762488k,nr_inodes=440622 0 0
+/dev/block/mmcblk0p16 /mnt/vendor/protect_f ext4 rw,seclabel,nosuid,nodev,noatime,journal_checksum,noauto_da_alloc 0 0
+/dev/block/mmcblk0p17 /mnt/vendor/protect_s ext4 rw,seclabel,nosuid,nodev,noatime,journal_checksum,noauto_da_alloc 0 0
+/dev/block/mmcblk0p26 /mnt/vendor/nvdata ext4 rw,seclabel,nosuid,nodev,noatime,discard,journal_checksum,noauto_da_alloc,errors=panic,data=ordered 0 0
+/dev/block/mmcblk0p1 /mnt/vendor/efs ext4 rw,seclabel,nosuid,nodev,noatime,journal_checksum,noauto_da_alloc 0 0
+/dev/fuse /mnt/user/0/emulated fuse rw,lazytime,nosuid,nodev,noexec,noatime,user_id=0,group_id=0,allow_other 0 0
+/dev/block/dm-38 /mnt/user/0/emulated/0/Android/data f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,reserve_root=32768,resuid=0,resgid=5678,usrquota,grpquota,inlinecrypt,alloc_mode=default,fsync_mode=nobarrier,compress_algorithm=lz4,compress_log_size=2 0 0
+/dev/block/dm-38 /mnt/user/0/emulated/0/Android/obb f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,reserve_root=32768,resuid=0,resgid=5678,usrquota,grpquota,inlinecrypt,alloc_mode=default,fsync_mode=nobarrier,compress_algorithm=lz4,compress_log_size=2 0 0
+/dev/block/dm-38 /mnt/pass_through/0/emulated f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,reserve_root=32768,resuid=0,resgid=5678,usrquota,grpquota,inlinecrypt,alloc_mode=default,fsync_mode=nobarrier,compress_algorithm=lz4,compress_log_size=2 0 0
+/dev/block/mmcblk0p30 /metadata ext4 rw,sync,seclabel,nosuid,nodev,noatime,discard,journal_checksum,noauto_da_alloc,errors=panic,data=ordered 0 0
+/dev/block/dm-4 /system_ext ext4 ro,seclabel,relatime 0 0
+/dev/block/dm-1 /vendor ext4 ro,seclabel,relatime 0 0
+===PARTITIONS===
+major minor  #blocks  name
+
+   1        0       4096 ram0
+   1        1       4096 ram1
+   1        2       4096 ram2
+   1        3       4096 ram3
+   1        4       4096 ram4
+   1        5       4096 ram5
+   1        6       4096 ram6
+   1        7       4096 ram7
+   1        8       4096 ram8
+   1        9       4096 ram9
+   1       10       4096 ram10
+   1       11       4096 ram11
+   1       12       4096 ram12
+   1       13       4096 ram13
+   1       14       4096 ram14
+   1       15       4096 ram15
+   7        0      11096 loop0
+   7        8      38796 loop1
+   7       16        916 loop2
+   7       24        916 loop3
+   7       32        352 loop4
+   7       40       4772 loop5
+   7       48      38796 loop6
+   7       56        904 loop7
+   7       64       6292 loop8
+   7       72       4016 loop9
+   7       80       1484 loop10
+   7       88       6872 loop11
+   7       96      11096 loop12
+   7      104       1160 loop13
+   7      112      14384 loop14
+   7      120       9380 loop15
+   7      128      23232 loop16
+   7      136      29668 loop17
+   7      144        968 loop18
+   7      152      24504 loop19
+   7      160       6908 loop20
+   7      168      40276 loop21
+   7      176        736 loop22
+   7      184       4368 loop23
+   7      192       4520 loop24
+   7      200      25796 loop25
+   7      208       9204 loop26
+   7      216       8296 loop27
+   7      224      18692 loop28
+   7      232      23300 loop29
+   7      240       7184 loop30
+   7      248        776 loop31
+   7      256      22456 loop32
+   7      264        400 loop33
+   7      272      29236 loop34
+   7      280      14880 loop35
+ 254        0    2051376 zram0
+ 179        0  122142720 mmcblk0
+ 179        1       8192 mmcblk0p1
+ 179        2       8192 mmcblk0p2
+ 179        3       4096 mmcblk0p3
+ 179        4      65536 mmcblk0p4
+ 179        5       1024 mmcblk0p5
+ 179        6       1024 mmcblk0p6
+ 179        7       1024 mmcblk0p7
+ 179        8       2048 mmcblk0p8
+ 179        9       2048 mmcblk0p9
+ 179       10       4096 mmcblk0p10
+ 179       11      16384 mmcblk0p11
+ 179       12       2048 mmcblk0p12
+ 179       13       8192 mmcblk0p13
+ 179       14         64 mmcblk0p14
+ 179       15       3008 mmcblk0p15
+ 179       16       8192 mmcblk0p16
+ 179       17       8192 mmcblk0p17
+ 179       18       8192 mmcblk0p18
+ 179       19      46592 mmcblk0p19
+ 179       20      26624 mmcblk0p20
+ 179       21        512 mmcblk0p21
+ 179       22        512 mmcblk0p22
+ 179       23      20480 mmcblk0p23
+ 179       24       1024 mmcblk0p24
+ 179       25      32768 mmcblk0p25
+ 179       26      65536 mmcblk0p26
+ 179       27      32768 mmcblk0p27
+ 179       28      16384 mmcblk0p28
+ 179       29      16384 mmcblk0p29
+ 179       30      23144 mmcblk0p30
+ 179       31        512 mmcblk0p31
+ 259        0       3072 mmcblk0p32
+ 259        1     131072 mmcblk0p33
+ 259        2       4096 mmcblk0p34
+ 259        3       4096 mmcblk0p35
+ 259        4      32768 mmcblk0p36
+ 259        5      32768 mmcblk0p37
+ 259        6         64 mmcblk0p38
+ 259        7         64 mmcblk0p39
+ 259        8        512 mmcblk0p40
+ 259        9       7960 mmcblk0p41
+ 259       10       8192 mmcblk0p42
+ 259       11    7659520 mmcblk0p43
+ 259       12     901120 mmcblk0p44
+ 259       13      24576 mmcblk0p45
+ 259       14     204800 mmcblk0p46
+ 259       15      51200 mmcblk0p47
+ 259       16      51200 mmcblk0p48
+ 259       17  112582656 mmcblk0p49
+ 179       96      16384 mmcblk0rpmb
+ 179       64       4096 mmcblk0boot1
+ 179       32       4096 mmcblk0boot0
+ 253        0     937788 dm-0
+ 253        1     795704 dm-1
+ 253        2     464272 dm-2
+ 253        3       1360 dm-3
+ 253        4     533128 dm-4
+ 253        5      14572 dm-5
+ 253        8        256 dm-8
+ 253        9        624 dm-9
+ 253       14       6876 dm-14
+ 253       16       4580 dm-16
+ 253       18      22944 dm-18
+ 253       20       8972 dm-20
+ 253       22      25416 dm-22
+ 253       23       4316 dm-23
+ 253       24      28752 dm-24
+ 253       25       4208 dm-25
+ 253       26      18388 dm-26
+ 253       27       8092 dm-27
+ 253       28        584 dm-28
+ 253       29      39796 dm-29
+ 253       30       6708 dm-30
+ 253       32      24152 dm-32
+ 253       33        800 dm-33
+ 253       34      22772 dm-34
+ 253       35      29284 dm-35
+ 253       36       9004 dm-36
+ 253       38  112582656 dm-38
+===BLOCKDEV===
+boot
+boot_para
+bota
+btd
+cache
+dtbo
+efs
+efuse
+expdb
+frp
+gz1
+keydata
+keyrefuge
+lk
+md1img
+md_udc
+metadata
+misc
+mmcblk0
+mmcblk0boot0
+mmcblk0boot1
+mmcblk0rpmb
+nvcfg
+nvdata
+nvram
+omr
+optics
+para
+param
+persistent
+prism
+proinfo
+protect1
+protect2
+recovery
+reserved
+scp1
+sec1
+sec_efs
+seccfg
+===FSTAB===
+# Android fstab file.
+#<src>                                                  <mnt_point>             <type>      <mnt_flags and options>                                                                                         <fs_mgr_flags>
+system                                                  /system                 ext4        ro                                                                                                              wait,,avb=vbmeta_system,logical,first_stage_mount
+system_ext                                              /system_ext             ext4        ro                                                                                                              wait,,avb,logical,first_stage_mount
+vendor                                                  /vendor                 ext4        ro                                                                                                              wait,,avb,logical,first_stage_mount
+product                                                 /product                ext4        ro                                                                                                              wait,,avb,logical,first_stage_mount
+odm                                                     /odm                    ext4        ro                                                                                                              wait,,avb,logical,first_stage_mount
+
+/dev/block/platform/bootdevice/by-name/md_udc           /metadata               ext4        noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic,sync                    wait,check,formattable,first_stage_mount
+/dev/block/platform/bootdevice/by-name/userdata         /data                   f2fs        noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,inlinecrypt  wait,check,,quota,latemount,,reservedsize=128M,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption,fscompress
+/dev/block/platform/bootdevice/by-name/cache            /cache                  ext4        noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                         wait,check,formattable
+
+/dev/block/platform/bootdevice/by-name/protect1         /mnt/vendor/protect_f	ext4        noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                         wait,check,formattable
+/dev/block/platform/bootdevice/by-name/protect2         /mnt/vendor/protect_s	ext4        noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                         wait,check,formattable
+/dev/block/platform/bootdevice/by-name/nvdata           /mnt/vendor/nvdata      ext4        noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                         wait,check,formattable
+/dev/block/platform/bootdevice/by-name/nvcfg            /mnt/vendor/nvcfg       ext         noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                         wait,check,formattable
+
+/dev/block/platform/bootdevice/by-name/prism            /prism                  ext4        ro,barrier=1                                                                                                    nofail,avb,first_stage_mount
+/dev/block/platform/bootdevice/by-name/optics           /optics                 ext4        ro,barrier=1                                                                                                    nofail,avb,first_stage_mount
+
+/dev/block/platform/bootdevice/by-name/efs              /mnt/vendor/efs         ext4        noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                         wait,check,formattable
+
+/devices/platform/externdevice*                         auto                    auto        defaults                                                                                                        voldmanaged=sdcard:auto
+/devices/platform/mt_usb*                               auto                    auto        defaults                                                                                                        voldmanaged=usb:auto
+
+/dev/block/platform/bootdevice/by-name/frp              /persistent             emmc        defaults                                                                                                        defaults
+
+/dev/block/platform/bootdevice/by-name/nvram            /nvram                  emmc        defaults                                                                                                        defaults
+/dev/block/platform/bootdevice/by-name/proinfo          /proinfo                emmc        defaults                                                                                                        defaults
+/dev/block/platform/bootdevice/by-name/lk               /bootloader             emmc        defaults                                                                                                        first_stage_mount
+/dev/block/platform/bootdevice/by-name/misc             /misc                   emmc        defaults                                                                                                        defaults,first_stage_mount
+/dev/block/platform/bootdevice/by-name/para             /para                   emmc        defaults                                                                                                        defaults
+
+/dev/block/platform/bootdevice/by-name/recovery         /recovery               emmc        defaults                                                                                                        first_stage_mount,nofail,
+/dev/block/platform/bootdevice/by-name/boot             /boot                   emmc        defaults                                                                                                        first_stage_mount,nofail,
+
+/dev/block/platform/bootdevice/by-name/vbmeta_vendor    /vbmeta_vendor          emmc        defaults                                                                                                        first_stage_mount,nofail,
+/dev/block/platform/bootdevice/by-name/vbmeta_system    /vbmeta_system          emmc        defaults                                                                                                        first_stage_mount,nofail,,avb=vbmeta
+
+/dev/block/platform/bootdevice/by-name/logo             /logo                   emmc        defaults                                                                                                        defaults

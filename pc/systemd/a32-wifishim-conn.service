@@ -1,0 +1,18 @@
+[Unit]
+Description=A32 Wi-Fi shim: connection orchestrator (hostapd + phone join)
+Documentation=file:///usr/local/lib/a32wifishim/README.md
+After=a32-wifishim-setup.service NetworkManager.service
+Wants=a32-wifishim-setup.service
+
+[Service]
+Type=simple
+# Band policy for BSS selection (non-DFS 5 GHz first). Set to 2.4 to flip.
+Environment=WIFISHIM_BAND_PREF=5g
+ExecStart=/usr/bin/python3 /usr/local/lib/a32wifishim/wifishim-conn.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

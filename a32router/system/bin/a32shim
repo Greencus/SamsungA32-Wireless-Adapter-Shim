@@ -1,0 +1,20 @@
+#!/system/bin/sh
+# a32shim — wrapper: (re)starts a32shim.py bound to the USB address.
+MODDIR=${0%/*}
+[ -f "$MODDIR/a32router.conf" ] && . "$MODDIR/a32router.conf"
+USB_IP=${USB_IP:-192.168.50.1}
+SHIM=${SHIM:-1}
+[ "$SHIM" = "1" ] || exit 0
+# Prefer Termux python3 (3.12, always present on this device); fall back to PATH.
+PY="/data/data/com.termux/files/usr/bin/python3"
+[ -x "$PY" ] || PY="python3"
+export SHIM_BIND="$USB_IP" BT_EXPORT="${BT_EXPORT:-0}"
+export SHIM_WIFI_PORT="${SHIM_WIFI_PORT:-33601}" SHIM_BT_PORT="${SHIM_BT_PORT:-33600}"
+# Wait for the USB address to exist (up to ~2 min); exit quietly otherwise.
+i=0
+while ! ip addr show 2>/dev/null | grep -q "$USB_IP/"; do
+  sleep 5
+  i=$((i + 1))
+  [ "$i" -ge 24 ] && exit 0
+done
+exec "$PY" "$MODDIR/system/bin/a32shim.py"

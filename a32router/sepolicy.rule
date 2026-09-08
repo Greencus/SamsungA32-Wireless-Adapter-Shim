@@ -1,0 +1,9 @@
+# sepolicy.rule — boot-time SELinux allows for a32router (magiskpolicy syntax).
+# ConfigFS gadget management (direct, framework mapping is broken on this ROM):
+allow magisk configfs dir { create read write open getattr setattr search add_name remove_name rmdir rename }
+allow magisk configfs lnk_file { create unlink rename read getattr }
+allow magisk configfs file { create read write open getattr setattr unlink rename }
+allow magisk configfs filesystem { getattr }
+# BT shim: sole-client access to the MTK btif port (type verified 2026-09-07):
+allow magisk stpbt_device chr_file { open read write ioctl getattr }
+allow magisk fw_log_bt_device chr_file { open read getattr }

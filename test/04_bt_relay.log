@@ -1,0 +1,53 @@
+=== 2026-09-07 BT HCI relay WORKS end-to-end (phone side) ===
+H4 CONFIRMED live: stop bluetooth-1-1 -> open /dev/stpbt -> 01 03 0C 00 ->
+040E0401030C00 (bt_reset.py, also reproduced twice more).
+btsnooz_hci.log (boot, test/btsnooz_hci.log) shows classic H4 + "MTK CONNAC #1"
+chip-ident vendor event. a32shim.py H4 splitter is the right design (added
+0x05 ISO alongside ACL shape).
+TWO relay bugs found+fixed in a32shim.py (v0.2.3):
+ (1) stpbt read() returns EIO instead of blocking when rx queue empty (driver
+     quirk). Blocking pump reader died instantly every session. Fix: select()
+     before every read; 10 consecutive EIOs = device gone. Priming read in the
+     session thread (select-guarded) proved same-thread reads fine.
+ (2) send_frame packed ">IB"+B (6-byte header) but protocol + PC parser are
+     9-byte ">IIB". Relay could never work end-to-end. One-line fix.
+PROOF: test/bt_client.py -> framed Reset over TCP -> framed Command Complete
+back ("RELAY WORKS"). Session auto-takes radio (svc disable -> stop HAL +
+force-stop app, bounded) and restores it on disconnect (HAL running verified).
+Takeover needs NO settings toggle (settings-put is ignored on this ROM).
+OPEN MYSTERIES (non-blocking): (a) first open-while-stack-up probe returned
+EIO not EBUSY (driver reports busy as EIO?); (b) one unexplained raw-bytes TCP
+client hit :33600 once ("bad frame magic") then vanished — :33600 is
+unauthenticated (documented: USB-physical-access trust model for v1).
+PC side pc/vhci-relay.py was already 9-byte-clean; added 0x05 inject. Needs
+root (modprobe hci_vhci + /dev/vhci + raw HCI user-channel). PC has own hci0
+(btusb) + bluetoothd active -> phone radio will appear as hci1.
+DO NOT combat pkill-self-match: use pidfile//proc-cmdline scans with $$+PPID
+exclusion when managing the shim remotely (killed own shells 3 times tonight).
+
+=== 2026-09-07 stale-relay pileup + pre-warm redesign (v0.2.4) ===
+DIAGNOSIS from user dmesg: hci1/2/3 ALL with Reset -110 + dirs never deleted.
+ps showed TWO relay instances in T (stopped = Ctrl-Z, not Ctrl-C) state from
+03:54/03:55 still holding vhci fds. User background-suspended instead of
+killing; each new run created another hciN; BlueZ probed the dead ones
+forever. Lesson: Ctrl-C (or sudo pkill -9 -f vhci-relay), never Ctrl-Z; stale
+dirs vanish when holders die (rmmod hci_vhci as last resort, hci0 unaffected).
+REDESIGN (v0.2.4 relay): TCP-first, kernel-device-second. Relay connects to
+phone, sends framed Reset, awaits Complete (120 s budget) and ONLY THEN
+creates the vhci device — BlueZ probes a live radio, no dead-on-arrival hci.
+Aborts cleanly if radio silent (nothing created).
+SHIM fast takeover: dropped the 15 s `svc bluetooth disable` wait (proven
+ineffective on this ROM every time; fire-and-forget + straight to stop-cmd).
+Takeover now ~2-4 s. Docstring updated (fd backend, not user-channel).
+
+=== 2026-09-07 bootstrap-echo poisoning (relay root cause) ===
+SYMPTOM: backend live (prewarm OK), device created, BlueZ NEVER sends a
+command (zero C->P lines), init -110 storm, device never listed.
+ROOT CAUSE: on vhci creation the driver queues a 4-byte bootstrap
+announcement [0xFF, opcode, id_lo, id_hi] for the first read. It is not H4
+(0xFF never parses), so h4_split stalled at byte 0 forever: every BlueZ
+command queued behind it unparsed -> -110 timeouts -> BlueZ gives up.
+FIX: drain exactly those 4 bytes after bootstrap (select-guarded, logged);
+replay any bytes beyond into the stream. Backend mode needs no user-channel
+bind at all (that whole fight was a red herring caused by this same stall:
+nothing ever flowed, so every side looked broken).

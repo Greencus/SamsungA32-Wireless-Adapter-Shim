@@ -1,0 +1,20 @@
+iperf3      NOT_FOUND
+socat       NOT_FOUND
+nmap        NOT_FOUND
+hping3      NOT_FOUND
+openssl     /data/data/com.termux/files/usr/bin/openssl
+python      /data/data/com.termux/files/usr/bin/python
+python3     /data/data/com.termux/files/usr/bin/python3
+node        /data/data/com.termux/files/usr/bin/node
+php         NOT_FOUND
+git         /data/data/com.termux/files/usr/bin/git
+curl        /data/data/com.termux/files/usr/bin/curl
+wget        NOT_FOUND
+perl        NOT_FOUND
+ruby        NOT_FOUND
+jq          NOT_FOUND
+sqlite3     NOT_FOUND
+zsh         NOT_FOUND
+fish        NOT_FOUND
+===
+834
