@@ -22,12 +22,16 @@ units=("$SDIR"/a32-wifishim-*.service)
   echo "FATAL: unit files not found next to $SDIR/install.sh"
   exit 1
 }
-for f in wifishim-setup.sh wifishim-scan.py wifishim-conn.py a32ctl.py; do
+for f in wifishim-setup.sh wifishim-scan.py wifishim-conn.py a32ctl.py vhci-relay.py; do
   [ -f "$PCDIR/$f" ] || {
     echo "FATAL: missing script: $PCDIR/$f"
     exit 1
   }
 done
+[ -f "$SDIR/a32-vhci-relay.service" ] || {
+  echo "FATAL: missing unit: $SDIR/a32-vhci-relay.service"
+  exit 1
+}
 
 for bin in python3 iw nmcli hostapd dnsmasq; do
   command -v "$bin" >/dev/null 2>&1 || {
@@ -57,11 +61,14 @@ fi
 
 mkdir -p "$DEST"
 cp "$PCDIR/wifishim-setup.sh" "$PCDIR/wifishim-scan.py" \
-  "$PCDIR/wifishim-conn.py" "$PCDIR/a32ctl.py" "$DEST/"
+  "$PCDIR/wifishim-conn.py" "$PCDIR/a32ctl.py" \
+  "$PCDIR/vhci-relay.py" "$DEST/"
 chmod 755 "$DEST"/wifishim-setup.sh "$DEST"/wifishim-scan.py \
-  "$DEST"/wifishim-conn.py "$DEST"/a32ctl.py
+  "$DEST"/wifishim-conn.py "$DEST"/a32ctl.py "$DEST"/vhci-relay.py
 echo "scripts -> $DEST"
-cp "$SDIR"/a32-wifishim-*.service /etc/systemd/system/
+cp "$SDIR"/a32-wifishim-setup.service "$SDIR"/a32-wifishim-scan.service \
+  "$SDIR"/a32-wifishim-conn.service "$SDIR"/a32-vhci-relay.service \
+  /etc/systemd/system/
 echo "units -> /etc/systemd/system/"
 cp "$SDIR"/nm-a32wifishim.conf /etc/NetworkManager/conf.d/a32wifishim.conf
 echo "nm conf -> /etc/NetworkManager/conf.d/ (hides mon1/ap1 from applet)"
@@ -69,6 +76,10 @@ nmcli general reload >/dev/null 2>&1 || true
 systemctl daemon-reload
 systemctl enable a32-wifishim-setup.service \
   a32-wifishim-scan.service a32-wifishim-conn.service
+# The BT relay goes live immediately (enable --now): connecting takes the
+# phone radio, so this is the one unit that acts on install. Stop it any
+# time with: sudo systemctl stop a32-vhci-relay.service
+systemctl enable --now a32-vhci-relay.service
 echo "installed. Start now with:"
 echo "  sudo systemctl start a32-wifishim-setup.service"
 echo "  sudo systemctl start a32-wifishim-scan.service a32-wifishim-conn.service"

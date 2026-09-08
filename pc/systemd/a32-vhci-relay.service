@@ -1,0 +1,22 @@
+[Unit]
+Description=A32 BT relay: phone radio as local BlueZ controller (VHCI)
+Documentation=file:///usr/local/lib/a32wifishim/README.md
+After=a32-wifishim-setup.service NetworkManager.service bluetooth.service
+Wants=a32-wifishim-setup.service bluetooth.service
+
+[Service]
+Type=simple
+# Phone USB address; override without editing:
+#   systemctl edit a32-vhci-relay.service   (add Environment=PHONE_IP=...)
+Environment=PHONE_IP=192.168.50.1
+ExecStart=/usr/bin/python3 /usr/local/lib/a32wifishim/vhci-relay.py ${PHONE_IP}
+# All failure exits are retryable (phone unplugged, vhci missing at boot);
+# clean session end exits 0 and stays stopped. An explicit
+# `systemctl stop` never restarts, whatever the exit code.
+Restart=on-failure
+RestartSec=15
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
