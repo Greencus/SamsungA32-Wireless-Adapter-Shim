@@ -33,10 +33,11 @@ and `test/` for the full engineering log.
 
 ### 1. Phone module
 
+Zip the a32router folder, it is your magisk module
 ```bash
 # from this directory; phone reachable via adb or Wi-Fi SSH
-adb push a32router-v0.2.7.zip /sdcard/
-adb shell su -c 'magisk --install-module /sdcard/a32router-v0.2.7.zip'
+adb push a32router.zip /sdcard/
+adb shell su -c 'magisk --install-module /sdcard/a32router.zip'
 # or: Magisk app -> Modules -> Install from storage -> pick the zip
 ```
 
