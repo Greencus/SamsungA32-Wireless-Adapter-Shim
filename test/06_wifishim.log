@@ -113,3 +113,38 @@ installed to /etc/NetworkManager/conf.d/ by install.sh (+ nmcli general
 reload, non-disruptive); orchestrator also calls nmcli device set ap1
 managed no per bringup for manual (non-installer) runs. ap1 keep-alive
 behavior unchanged (fast reuse across sessions).
+
+=== 2026-09-08 BT relay systemd unit (user-authored, reviewed+fixed) ===
+NOTE: no vhci unit existed anywhere on disk (searched repo + system paths)
+-> wrote pc/systemd/a32-vhci-relay.service from scratch in repo conventions.
+REVIEW findings, all addressed: (1) relay exits 1 on every failure mode
+(TCP/vhci/bootstrap/no-device) so Restart=on-failure retries exactly the
+right set; clean session end exits 0 and stays stopped; explicit systemctl
+stop never restarts regardless of exit code. (2) RestartSec=15: phone
+replugged later is picked up; prewarm timeouts bound each attempt so no
+tight loop; default start-limit can't trip at 15s spacing. (3) PHONE_IP via
+Environment, overridable with systemctl edit (script already takes argv[1]).
+(4) After/Wants setup+NM+bluetooth (Wants on absent bluetooth.service is a
+harmless no-op). (5) install.sh: preflight now covers vhci-relay.py + the
+unit explicitly; copies script+unit; enable --now ONLY the vhci unit (starts
+it immediately = takes the phone radio if plugged in; stop returns radio).
+wifishim units stay enable-only as before. (6) README rollback fixed: old
+a32-wifishim-*.service glob never matched the new unit name.
+
+=== 2026-09-08 post-reboot failures: rfkill + mon1 DOWN (root causes) ===
+SYMPTOM (after PC reboot): wlan1/wlan2 "unavailable", empty scans, vhci dead.
+ROOT CAUSE 1 (wifi): systemd-rfkill restored soft-BLOCKED wifi at boot (all
+phys blocked; NM radio off too). Fix was `nmcli radio wifi on` (+ unblock).
+ROOT CAUSE 2 (injector): mon1 sits DOWN (rfkill boot + radio toggle leave it
+down; nothing re-ups it) -> every channel set EBUSY + all TX silently
+dropped. Daemon now re-ups mon1 every 60s tick (idempotent). Setup unblocks
+ONLY hwsim phys at boot (mapped via rfkill device symlinks, exact-suffix
+match so phy1 never matches phy10+); real hardware untouched (blocked card
+may be user intent). NM radio state left to the operator.
+ROOT CAUSE 3 (BT, separate): phone had REBOOTED (uptime 10 min); manual shim
+instance died with it and Magisk boot shim never started (wrapper lost +x,
+plus wrapper MODDIR pointed one level wrong: system/system path). Fixed:
+chmod in customize.sh, wrapper derives root via dirname/../.., BT_EXPORT=1
+persisted in conf. PC vhci unit (restart loop) reconnected by itself.
+LESSON: distinguish "managed by NM" (wlan1) from daemon-owned (mon1/ap1);
+only the latter get self-heal; the former is NM's job.

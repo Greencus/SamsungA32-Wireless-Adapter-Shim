@@ -1,7 +1,7 @@
 #!/system/bin/sh
 # a32shim — wrapper: (re)starts a32shim.py bound to the USB address.
-MODDIR=${0%/*}
-[ -f "$MODDIR/a32router.conf" ] && . "$MODDIR/a32router.conf"
+RDIR=$(cd "$(dirname "$0")/../.." && pwd) || exit 1
+[ -f "$RDIR/a32router.conf" ] && . "$RDIR/a32router.conf"
 USB_IP=${USB_IP:-192.168.50.1}
 SHIM=${SHIM:-1}
 [ "$SHIM" = "1" ] || exit 0
@@ -17,4 +17,4 @@ while ! ip addr show 2>/dev/null | grep -q "$USB_IP/"; do
   i=$((i + 1))
   [ "$i" -ge 24 ] && exit 0
 done
-exec "$PY" "$MODDIR/system/bin/a32shim.py"
+exec "$PY" "$RDIR/system/bin/a32shim.py"

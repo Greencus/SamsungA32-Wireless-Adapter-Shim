@@ -316,6 +316,13 @@ def main():
             now0 = time.time()
             if now0 - last_stat > 60:
                 last_stat = now0
+                # Self-heal: mon1 silently goes DOWN (rfkill-at-boot,
+                # NM/radio toggles) and then every channel-set EBUSYs and
+                # all TX is dropped. Re-up is idempotent; log on change.
+                r = subprocess.run(["ip", "link", "set", MON, "up"],
+                                   capture_output=True, timeout=10)
+                if r.returncode != 0:
+                    log("mon1 up-ensure failed rc=%d" % r.returncode)
                 try:
                     with open("/sys/class/net/%s/statistics/tx_packets"
                               % MON) as f:

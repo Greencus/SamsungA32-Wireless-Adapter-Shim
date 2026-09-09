@@ -55,3 +55,18 @@ FALSE ALARM (own goal): `pgrep -f a32radvd` matched the querying shell itself
 READ checks too, not just kills. Verified clean via bracket-safe scan.
 Hardening kept anyway: radvd_stop pattern-kills + dormant branch always
 stops (cheap orphan insurance).
+
+=== 2026-09-08 repo<->phone sync audit + v0.2.7 ===
+FOUND: repo conf BT_EXPORT=0 vs live phone BT_EXPORT=1 (sed'd live earlier,
+never synced back). DECISION: repo default -> 1 (takeover only happens on
+actual TCP connect, so idle systems unaffected; customize.sh preserves
+existing conf on upgrade, so live phone keeps its value either way).
+FOUND: phone radvd.py stale (pre-asserts). Pushed current + on-device
+selftest OK; old instance killed (daemon respawns only when a prefix exists;
+currently dormant so nothing restarted — correct).
+FOUND: v0.2.6 zip predated accept_ra/radvd-hardening/wrapper-RDIR/customize
+fixes. Bumped v0.2.7/code 9, rebuilt (20 files, no pycache), README refs
+updated. Verified IN ZIP by content markers: wrapper RDIR, daemon EUI +
+accept_ra, radvd asserts, uninstall v6, BT_EXPORT=1, customize set_perm.
+Phone already runs functionally identical code; no urgent reinstall needed
+(fresh v0.2.7 install converges to the same state).

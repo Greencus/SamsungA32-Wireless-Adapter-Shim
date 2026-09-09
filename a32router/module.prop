@@ -1,6 +1,6 @@
 id=a32router
 name=A32 USB Router + BT HCI
-version=v0.2.6
-versionCode=8
+version=v0.2.7
+versionCode=9
 author=a32wifiadapter
 description=Routed Wi-Fi to USB-Ethernet (RNDIS, no NAT) for Galaxy A32 MT6769. BT HCI export phase 2.

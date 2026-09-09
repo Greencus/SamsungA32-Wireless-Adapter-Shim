@@ -66,6 +66,24 @@ done
 iw phy "$P2" interface add wlan1 type managed 2>/dev/null &&
   echo "created wlan1 (STA) on $P2" || echo "wlan1 already present"
 
+# --- unblock ONLY our virtual radios. Never touch real hardware: a blocked
+# --- physical card may reflect user intent (airplane mode etc.); hwsim
+# --- radios are fresh every boot and must never start blocked, or mon1 can
+# --- never TX (channel sets EBUSY forever). Match by driver path suffix so
+# --- phy1 never matches phy10+.
+for _p in "$P1" "$P2"; do
+  [ -n "$_p" ] || continue
+  for _r in /sys/class/rfkill/rfkill*; do
+    _d=$(readlink "$_r/device" 2>/dev/null || true)
+    case "$_d" in
+    *"/ieee80211/$_p")
+      _i=${_r##*rfkill}
+      rfkill unblock "$_i" 2>/dev/null &&
+        echo "unblocked rfkill$_i ($_p)" || true
+      ;;
+    esac
+  done
+done
 # --- monitor ALONE on the first radio.
 iw phy "$P1" interface add mon1 type monitor 2>/dev/null &&
   echo "created mon1 on $P1" || echo "mon1 already present"

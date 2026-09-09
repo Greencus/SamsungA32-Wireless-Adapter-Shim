@@ -24,8 +24,8 @@ import time
 
 ALL_NODES = "ff02::1"
 HOP_LIMIT = 64
-VALID_LIFE = 2592000      # 30 d
-PREFERRED_LIFE = 604800   # 7 d
+VALID_LIFE = 120000       # 33 h
+PREFERRED_LIFE = 120000   # 33 h
 ADV_INTERVAL = 15
 
 
@@ -124,6 +124,10 @@ def main():
         lifetime = int(sys.argv[3]) if len(sys.argv) > 3 else 1800
     except ValueError:
         print("bad lifetime: %s" % sys.argv[3], file=sys.stderr)
+        return 2
+    if not 0 <= lifetime <= 9000:
+        print("bad lifetime %d: must be 0..9000 (RFC 4861); "
+              "use 1800 default" % lifetime, file=sys.stderr)
         return 2
     try:
         ll = lladdr_of(iface)

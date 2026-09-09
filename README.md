@@ -34,10 +34,9 @@ and `test/` for the full engineering log.
 ### 1. Phone module
 
 ```bash
-# First zip archive the a32router folder, it is the magisk module. It is unzipped for readability.
 # from this directory; phone reachable via adb or Wi-Fi SSH
-adb push a32router.zip /sdcard/
-adb shell su -c 'magisk --install-module /sdcard/a32router'
+adb push a32router-v0.2.7.zip /sdcard/
+adb shell su -c 'magisk --install-module /sdcard/a32router-v0.2.7.zip'
 # or: Magisk app -> Modules -> Install from storage -> pick the zip
 ```
 
@@ -181,7 +180,8 @@ python3 pc/a32ctl.py forget <ssid> | enable | disable
 ## Rollback / uninstall
 
 - PC shim: `sudo systemctl disable --now a32-wifishim-scan.service
-  a32-wifishim-conn.service`, `sudo rm -rf /usr/local/lib/a32wifishim
+  a32-wifishim-conn.service a32-vhci-relay.service` (stopping the relay
+  returns the radio to the phone), `sudo rm -rf /usr/local/lib/a32wifishim
   /etc/systemd/system/a32-wifishim-*.service /etc/modules-load.d/a32wifishim.conf
   /etc/modprobe.d/a32wifishim.conf`, `sudo rmmod mac80211_hwsim hci_vhci`,
   delete the `wlan1` Wi-Fi profiles you created for testing.
